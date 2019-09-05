@@ -1,53 +1,69 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
 import ProductItemComponent from '../../components/ProductItem/productItem.component';
 
-class productsItemContainer extends Component {
-    constructor(props) {
-        super(props);
+export const ProductsItemContainer = props => {
+    const {
+        itemProps: {
+            img,
+            description,
+            code,
+            price,
+            currency,
+        } = {},
+    } = props;
 
-        this.state = {
-            quantity: 0,
-            totalProduct: 0,
-        };
+    const [quantity, setQuantity] = useState(0);
+    const [totalProduct, setTotalProduct] = useState(0);
 
-        this.handleQuantityChange = this.handleQuantityChange.bind(this);
+    const calculateTotalProduct = quantity => {
+        const newTotalProduct = quantity * price;
+        setTotalProduct(newTotalProduct);
+    };
+
+    const handleQuantityChange = (event) => {
+        event.preventDefault();
+        
+        const newQuantity = Number(event.target.value);
+        setQuantity(newQuantity);
+        calculateTotalProduct(newQuantity);
     }
 
-    handleQuantityChange = (event) => {
+    const handleIncreaseQuantity = (event) => {
         event.preventDefault();
 
-        const { itemProps: { price } } = this.props;
+        const newQuantity = quantity + 1;
         
-        const quantity = Number(event.target.value);
-        const totalProduct = quantity * price; 
-        this.setState({ quantity, totalProduct });
+        setQuantity(newQuantity);
+        calculateTotalProduct(newQuantity);
     }
 
-    render() {
-        const {
-            itemProps: {
-                img,
-                description,
-                code,
-                price,
-                currency,
-            } = {},
-        } = this.props;
+    const handleDecreaseQuantity = (event) => {
+        event.preventDefault();
 
-        return (
-            <ProductItemComponent
-                img={img}
-                description={description}
-                code={code}
-                price={price}
-                currency={currency}
-                quantity={this.state.quantity}
-                onChageQuantity={this.handleQuantityChange}
-                totalProduct={this.state.totalProduct}
-            />
-        );
+        if (quantity === 0)
+            return;
+        
+        const newQuantity = quantity - 1;
+        
+        setQuantity(newQuantity);
+        calculateTotalProduct(newQuantity);
     }
+
+    return (
+        <ProductItemComponent
+            img={img}
+            description={description}
+            code={code}
+            price={price}
+            currency={currency}
+            quantity={quantity}
+            onChageQuantity={handleQuantityChange}
+            increaseQuantity={handleIncreaseQuantity}
+            decreaseQuantity={handleDecreaseQuantity}
+            totalProduct={totalProduct}
+        />
+    );
 };
 
-export default productsItemContainer;
+export default ProductsItemContainer;

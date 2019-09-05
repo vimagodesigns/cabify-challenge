@@ -1,54 +1,45 @@
 import React from 'react';
 
-const productsItemComponent = props => {
+import ProductDetais from '../ProductDetails/productDetails.component';
+import QuantityInputComponent from '../QuantityInput/quantitiInput.component';
+import ProductAmountComponent from '../ProductAmount/productAmount.component';
+
+const ProductsItemComponent = props => {
     const {
-        img,
-        description,
-        code,
         price,
         currency,
-        quantity,
         totalProduct,
-        onChageQuantity,
     } = props;
+
+    const productDetailsProps = {
+        img: props.img,
+        description: props.description,
+        code: props.code,
+    };
+
+    const quantityInputProps = {
+        quantity: props.quantity,
+        onChageQuantity: props.onChageQuantity,
+        increaseQuantity: props.increaseQuantity,
+        decreaseQuantity: props.decreaseQuantity,
+    };
 
     return (
         <li className="product row">
-            <div className="col-product">
-                <figure className="product-image">
-                    <img src={`img/${img}`} alt={description} />
-                    <div className="product-description">
-                        <h1>{description}</h1>
-                        <p className="product-code">Product code {code}</p>
-                    </div>
-                </figure>
-            </div>
-
-            {/* Componetn quantity */}
-            <div className="col-quantity">
-                <button className="count">-</button>
-                <input
-                    type="text"
-                    className="product-quantity"
-                    defaultValue={quantity}
-                    onInput={onChageQuantity}
-                />
-                <button className="count">+</button>
-            </div>
-            {/* END Componetn quantity */}
-
-            <div className="col-price">
-                <span className="product-price">{price}</span>
-                <span className="product-currency currency">{currency}</span>
-            </div>
-
-            {/* producto total (container) */}
-            <div className="col-total"> 
-                <span className="product-price">{totalProduct}</span>
-                <span className="product-currency currency">€</span>
-            </div>
+            <ProductDetais {...productDetailsProps} />
+            <QuantityInputComponent {...quantityInputProps} />
+            <ProductAmountComponent
+                customClassName="col-price"
+                amount={price}
+                currency={currency}
+            />
+            <ProductAmountComponent
+                customClassName="col-total"
+                amount={totalProduct}
+                currency={currency}
+            />
         </li>
     );
 };
 
-export default productsItemComponent;
+export default ProductsItemComponent;

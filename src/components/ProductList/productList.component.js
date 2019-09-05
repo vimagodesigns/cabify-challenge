@@ -2,7 +2,7 @@ import React from 'react';
 
 import ProductItem from '../../containers/ProductItem/productItem.container';
 
-const productsListComponent = props => {
+const ProductsListComponent = props => {
     const { productListElements } = props;
 
     const createProductItems = () => productListElements.map(
@@ -16,4 +16,4 @@ const productsListComponent = props => {
     );
 };
 
-export default productsListComponent;
+export default ProductsListComponent;
