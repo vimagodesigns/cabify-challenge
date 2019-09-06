@@ -45,124 +45,100 @@ export class Checkout {
         this.productList = productList;
         this.total = 0;
         this.scannedProducts = {};
-        // this.productDiscounts = {};
     }
 
-    findProduct(producType) {
-        return this.productList.find((product) => product.type === producType);
+    findProduct(productType) {
+        return this.productList.find((product) => product.type === productType);
     }
  
-    discount(producType, quantity) {
+    discount(productType, quantity) {
         const formattedProduct = {
-            ...this.findProduct(producType),
+            ...this.findProduct(productType),
             quantity,
         };
 
-        const hasRule = !!this.pricingRules[producType];
+        const hasRule = !!this.pricingRules[productType];
         const productDiscount =  hasRule ?
-            this.pricingRules[producType](formattedProduct) : 
+            this.pricingRules[productType](formattedProduct) : 
             0;
         return productDiscount;
     }
 
-    scan(producType) {
-        // RECOJO EL PRODUCTO CORRECTO
-        console.log(this.productList);
-        const price = this.findProduct(producType).price;
-        // SCANEO EL PRODUCTO
-        const currentProduct = this.scannedProducts[producType];
-        const hasThatProduct = !!currentProduct;
+    isProductScanned(productType) {
+        return !!this.scannedProducts[productType];
+    }
+
+    scan(productType) {
+        const price = this.findProduct(productType).price;
+        const currentProduct = this.scannedProducts[productType];
+        const hasThatProduct = this.isProductScanned(productType);
 
         const quantity = hasThatProduct ?
             currentProduct.quantity + 1 : 
             1;
 
-        const productDiscount = this.discount(producType, quantity);
+        const productDiscount = this.discount(productType, quantity) || 0;
         const discount = hasThatProduct ? 
             currentProduct.discount + productDiscount : 
             productDiscount;
 
-        this.scannedProducts = {
-            ...this.scannedProducts,
-            [producType]: {
-                quantity,
-                discount,
-            }
-        }
+        this.setScannedProducts(productType, { quantity, discount });
 
-        this.total = this.total + price - productDiscount;
+        this.addToTotal(price - productDiscount);
 
         console.log(':::::: quantity ::::', quantity);
         console.log(':::::: discount ::::', discount);
         console.log(':::::: total ::::', this.total);
+
+        return this;
+        // NOTE
+        // "this" is the object from I have called this function
+        // checkout.scan(type) -> checkout is "this"
+        // if we want to concatenate we have to return "this"
+        // checkout.scan(type).scan(type)
+        // checkout.scan(type) will do whatever and return checkout
+        // so we can do another checkout.scan(type)
     }
-}
 
-    // scan(productType) {
-    //     const hasThatProduct = !!this.scannedProducts[productType];
-    //     // const hasDiscountRule = !!this.pricingRules[productType];
-    //     const currentProduct = this.scannedProducts[productType];
+    unscan(productType) {
+        const currentProduct = this.scannedProducts[productType];
+        const currentQuantity = currentProduct.quantity;
+        
+        if (currentQuantity === 0)
+            return;
+        
+        const price = this.findProduct(productType).price;
+        const singleDiscount = this.discount(productType, currentProduct.quantity);
+        const quantity = currentProduct.quantity - 1;
+        const discount = currentProduct.discount - singleDiscount;
 
-    //     const quantityProduct = hasThatProduct ? currentProduct + 1 : 1;
-            
-    //     this.scannedProducts = {
-    //         ...this.scannedProducts,
-    //         [productType]: quantityProduct,
-    //     }
+        this.setScannedProducts(productType, { quantity, discount });
 
-    //     const priceObject = this.pricingRules.rules[productType](quantityProduct);
+        this.removeFromTotal(price + singleDiscount);
 
-    //     this.productDiscounts = {
-    //         ...this.productDiscounts,
-    //         [productType]: priceObject.discount,
-    //     }
+        console.log(':::::: quantity ::::', quantity);
+        console.log(':::::: discount ::::', discount);
+        console.log(':::::: total ::::', this.total);
 
-    //     // if (hasDiscountRule) {
-    //     //     const discount = this.checkDiscount(productType, quantityProduct);
-    //     //     console.log('::::: DISCOUNT :::::', discount);
-    //     // }
+        return this;
+    }
 
-    //     return this;
-    //     // NOTE
-    //     // "this" is the object from I have called this function
-    //     // checkout.scan(type) -> checkout is "this"
-    //     // if we want to concatenate we have to return "this"
-    //     // checkout.scan(type).scan(type)
-    //     // checkout.scan(type) will do whatever and return checkout
-    //     // so we can do another checkout.scan(type)
-    // }
+    addToTotal(amount) {
+        this.total = this.total + amount;
+    }
 
-    // unscan(productType) {
-    //     // TODO - We can throw an error if the type is not in the scanned products
-    //     const hasDiscountRule = !!this.pricingRules[productType];
+    removeFromTotal(amount) {
+        this.total = this.total - amount;
+        if (this.total < 0)
+            this.total = 0;
+    }
 
-    //     const quantityProduct = this.scannedProducts[productType] - 1;
-    //     const getQuantify = () =>  quantityProduct >= 0 ? quantityProduct : 0;
-            
-    //     this.scannedProducts = {
-    //         ...this.scannedProducts,
-    //         [productType]: getQuantify(),
-    //     }
-
-    //     if (hasDiscountRule) {
-    //         const discount = this.checkDiscount(productType, getQuantify());
-    //         console.log('::::: DISCOUNT???? :::::', discount);
-    //     }
-    //     return this;
-    // }
-
-    // checkDiscount(productType, quantityProduct) {
-    //     return this.pricingRules[productType](quantityProduct);
-    // }
-
-
-
-
-
-
-
-
-
+    setScannedProducts(productType, newProduct) {
+        this.scannedProducts = {
+            ...this.scannedProducts,
+            [productType]: newProduct
+        }
+    }
 
     // NOTE
     // this is not javascript way of 
@@ -174,4 +150,4 @@ export class Checkout {
     // set scannedProducts(products) {
     //     this._scannedProducts = products;
     // }
-// }
+}
