@@ -10,6 +10,7 @@ export const ProductsItemContainer = props => {
             code,
             price,
             currency,
+            type,
         } = {},
     } = props;
 
@@ -35,12 +36,10 @@ export const ProductsItemContainer = props => {
 
         const newQuantity = quantity + 1;
 
-        console.log(checkout.total);
-        checkout.add()
-        checkout.add()
-        console.log(checkout.total);
-
-
+        console.log('begin', checkout.scannedProducts);
+        checkout.scan(type).scan(type);
+        console.log('end', checkout.scannedProducts);
+        console.log('end', checkout.total);
 
         setQuantity(newQuantity);
         calculateTotalProduct(newQuantity);
@@ -48,6 +47,10 @@ export const ProductsItemContainer = props => {
 
     const handleDecreaseQuantity = (event) => {
         event.preventDefault();
+
+        console.log('begin', checkout.scannedProducts);
+        checkout.unscan(type);
+        console.log('end', checkout.scannedProducts);
 
         if (quantity === 0)
             return;
