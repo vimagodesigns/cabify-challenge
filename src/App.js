@@ -3,10 +3,9 @@ import './App.css';
 
 import Products from './containers/Products/products.container';
 import OrderSummaryComponent from './components/OrderSummary/orderSummary.component';
-import { Checkout } from './services/Checkout.class';
 
 setGlobal({
-  checkout: new Checkout(),
+  checkout: null,
   productList: [],
 });
 

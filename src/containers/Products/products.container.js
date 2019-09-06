@@ -2,6 +2,9 @@ import React, { useGlobal } from 'reactn';
 
 import ProductComponent from '../../components/Products/products.component';
 import { MUG, TSHIRT, CAP } from '../../constants/products.constants';
+import { pricingRules } from '../../services/PricingRules.class';
+import { getPriceAndDiscountByAmount } from '../../utils/pricingRules.utils';
+import { Checkout } from '../../services/Checkout.class';
 
 const ProductsContainer = () => {
     const productListElements = [
@@ -11,7 +14,9 @@ const ProductsContainer = () => {
             code: 'X7R2OPX',
             price: 20,
             currency: '€',
-            type: TSHIRT
+            type: TSHIRT,
+            discountRule: (price) => (quantity) => 
+                getPriceAndDiscountByAmount(3, 1, quantity, price),
         },
         {
             img: 'mug.png',
@@ -19,7 +24,9 @@ const ProductsContainer = () => {
             code: 'X2G2OPZ',
             price: 5,
             currency: '€',
-            type: MUG
+            type: MUG,
+            // discountRule: (price) => (quantity) => 
+            //     getDiscountByPercentage(3, 1, quantity, price),
         },
         {
             img: 'cap.png',
@@ -27,7 +34,7 @@ const ProductsContainer = () => {
             code: 'X3W2OPY',
             price: 10,
             currency: '€',
-            type: CAP
+            type: CAP,
         },
         // {
         //     img: 'cap.png',
@@ -35,13 +42,19 @@ const ProductsContainer = () => {
         //     code: 'TUPITUPI',
         //     price: 15,
         //     currency: '€',
-        //     type: 'TUPI'
+        //     type: 'TUPI',
+            // discountRule: null,
         // },
     ];
 
     const [, setProductsList] = useGlobal('productList');
+    const [, setCheckout] = useGlobal('checkout');
+
+    // const pricingRulesClass = new PricingRulesClass({ products: productListElements });
+    // const pricingRules = pricingRulesClass.rules;
 
     setProductsList(productListElements);
+    setCheckout(new Checkout(pricingRules));
 
     return (
         <ProductComponent />
