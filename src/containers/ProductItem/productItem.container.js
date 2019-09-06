@@ -23,37 +23,31 @@ export const ProductsItemContainer = props => {
         setTotalProduct(newTotalProduct);
     };
 
+    const handleNewQuantity = (value) => {
+        const newQuantity = value || checkout.getScannedProduct(type).quantity;
+        setQuantity(newQuantity);
+        calculateTotalProduct(newQuantity);
+    }
+
     const handleQuantityChange = (event) => {
         event.preventDefault();
-        
         const newQuantity = Number(event.target.value);
-        setQuantity(newQuantity);
-        
-        calculateTotalProduct(newQuantity);
+        handleNewQuantity(newQuantity);
+        checkout.clearScannedProduct(type);
+        checkout.scanTimes(newQuantity, type);
+
     }
 
     const handleIncreaseQuantity = (event) => {
         event.preventDefault();
-
-        const newQuantity = quantity + 1;
-
         checkout.scan(type);
-
-        setQuantity(newQuantity);
-        calculateTotalProduct(newQuantity);
+        handleNewQuantity();
     }
-
+    
     const handleDecreaseQuantity = (event) => {
         event.preventDefault();
-
-        if (quantity === 0)
-            return;
         checkout.unscan(type);
-        
-        const newQuantity = quantity - 1;
-        
-        setQuantity(newQuantity);
-        calculateTotalProduct(newQuantity);
+        handleNewQuantity();
     }
 
     return (

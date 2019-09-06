@@ -13,9 +13,16 @@ export class Checkout {
         return this.scannedProducts[productType];
     }
 
+    clearScannedProduct(productType) {
+        this.setScannedProducts(productType, {
+            quantity: 0,
+            discount: 0,
+            cost: 0,
+         })
+    }
+
     initScannedProducts() {
-        this.productList.map(product => 
-            this.setScannedProducts(product.type, { quantity: 0, discount: 0 }));
+        this.productList.map(product => this.clearScannedProduct(product.type));
     }
 
     findProduct(productType) {
@@ -35,21 +42,28 @@ export class Checkout {
         return productDiscount;
     }
 
+    scanTimes(times, productType) {
+        if (times === 0) {
+            this.clearScannedProduct();
+            return;
+        }
+
+        for (let index = 0; index < times; index++) {
+            this.scan(productType);
+        }
+    }
+
     scan(productType) {
-        const price = this.findProduct(productType).price;
         const currentProduct = this.getScannedProduct(productType);
         const quantity = currentProduct.quantity + 1;
-        const productDiscount = this.discount(productType, quantity) || 0;
-        const discount =  currentProduct.discount + productDiscount;
+        const singleDiscount = this.discount(productType, quantity) || 0;
+        const productDiscount = currentProduct.discount;
+        const discount =  productDiscount + singleDiscount;
+        const updatedPrice = this.findProduct(productType).price - singleDiscount;
+        const updatedProductCost = currentProduct.cost + updatedPrice;
 
-        this.setScannedProducts(productType, { quantity, discount });
-
-        this.addToTotal(price - productDiscount);
-
-        console.log(':::::: quantity ::::', quantity);
-        console.log(':::::: discount ::::', discount);
-        console.log(':::::: total ::::', this.total);
-
+        this.setScannedProducts(productType, { quantity, discount, cost: updatedProductCost });
+        
         return this;
         // NOTE
         // "this" is the object from I have called this function
@@ -72,13 +86,9 @@ export class Checkout {
         const quantity = currentProduct.quantity - 1;
         const discount = currentProduct.discount - singleDiscount;
 
-        this.setScannedProducts(productType, { quantity, discount });
+        this.setScannedProducts(productType, { quantity, discount, cost: price });
 
         this.removeFromTotal(price + singleDiscount);
-
-        console.log(':::::: quantity ::::', quantity);
-        console.log(':::::: discount ::::', discount);
-        console.log(':::::: total ::::', this.total);
 
         return this;
     }
@@ -98,6 +108,20 @@ export class Checkout {
             ...this.scannedProducts,
             [productType]: newProduct
         }
+        console.log('================================');
+        console.log('productUpdated', productType);
+        console.log('objectUpdated', newProduct);
+        this.handleTotalAfterChange();
+    }
+
+    handleTotalAfterChange() {
+        this.total = 0;
+        const scannedProductsKeys = Object.keys(this.scannedProducts);
+        scannedProductsKeys.map(
+            productKey =>
+                this.total = this.total + this.getScannedProduct(productKey).cost
+        );
+        console.log('TOTAL :::::', this.total);
     }
 
     // NOTE

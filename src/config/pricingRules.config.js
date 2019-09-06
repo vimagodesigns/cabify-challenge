@@ -6,7 +6,9 @@ export const pricingRules = {
         const shirtDiscount = 1;
         const discount = quantity < 3 ? 0 : shirtDiscount;
 
-        return discount;
+        return quantity === 3 ?
+            discount * 3 :
+            discount;
     },
     [MUG]: (product) => {
         const { quantity, price } = product;
