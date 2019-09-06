@@ -4,32 +4,26 @@ import ProductItemComponent from '../../components/ProductItem/productItem.compo
 
 export const ProductsItemContainer = props => {
     const {
-        itemProps: {
-            img,
-            description,
-            code,
-            price,
-            currency,
-            type,
-        } = {},
+        itemProps: { img, description, code, price, currency, type } = {},
     } = props;
 
     const [quantity, setQuantity] = useState(0);
     const [totalProduct, setTotalProduct] = useState(0);
     const [checkout] = useGlobal('checkout');
 
+
     const calculateTotalProduct = quantity => {
         const newTotalProduct = quantity * price;
         setTotalProduct(newTotalProduct);
     };
 
-    const handleNewQuantity = (value) => {
+    const handleNewQuantity = value => {
         const newQuantity = value || checkout.getScannedProduct(type).quantity;
         setQuantity(newQuantity);
         calculateTotalProduct(newQuantity);
     }
 
-    const handleQuantityChange = (event) => {
+    const handleChangeQuantity = event => {
         event.preventDefault();
         const newQuantity = Number(event.target.value);
         handleNewQuantity(newQuantity);
@@ -38,17 +32,18 @@ export const ProductsItemContainer = props => {
 
     }
 
-    const handleIncreaseQuantity = (event) => {
+    const handleIncreaseQuantity = event => {
         event.preventDefault();
         checkout.scan(type);
         handleNewQuantity();
     }
     
-    const handleDecreaseQuantity = (event) => {
+    const handleDecreaseQuantity = event => {
         event.preventDefault();
         checkout.unscan(type);
         handleNewQuantity();
     }
+
 
     return (
         <ProductItemComponent
@@ -58,7 +53,7 @@ export const ProductsItemContainer = props => {
             price={price}
             currency={currency}
             quantity={quantity}
-            onChageQuantity={handleQuantityChange}
+            onChageQuantity={handleChangeQuantity}
             increaseQuantity={handleIncreaseQuantity}
             decreaseQuantity={handleDecreaseQuantity}
             totalProduct={totalProduct}

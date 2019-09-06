@@ -9,22 +9,35 @@ export class Checkout {
         this.initScannedProducts();
     }
 
+    initScannedProducts() {
+        this.productList.map(product => this.clearScannedProduct(product.type));
+        return this;
+    }
+
     getScannedProduct(productType) {
         return this.scannedProducts[productType];
     }
 
+    setScannedProduct(productType, newProduct) {
+        this.scannedProducts = {
+            ...this.scannedProducts,
+            [productType]: newProduct
+        }
+        console.log('================================');
+        console.log('productUpdated', productType);
+        console.log('objectUpdated', newProduct);
+        this.handleTotalAfterChange();
+
+        return this;
+    }
+
     clearScannedProduct(productType) {
-        this.setScannedProducts(productType, {
+        this.setScannedProduct(productType, {
             quantity: 0,
             discount: 0,
             cost: 0,
         });
 
-        return this;
-    }
-
-    initScannedProducts() {
-        this.productList.map(product => this.clearScannedProduct(product.type));
         return this;
     }
 
@@ -67,7 +80,7 @@ export class Checkout {
         const updatedPrice = this.findProduct(productType).price - singleDiscount;
         const updatedProductCost = currentProduct.cost + updatedPrice;
 
-        this.setScannedProducts(
+        this.setScannedProduct(
             productType,
             { quantity, discount, cost: updatedProductCost }
         );
@@ -96,36 +109,10 @@ export class Checkout {
         const updatedPrice = this.findProduct(productType).price - singleDiscount;
         const updatedProductCost = currentProduct.cost - updatedPrice;
 
-        this.setScannedProducts(
+        this.setScannedProduct(
             productType,
             { quantity, discount, cost: updatedProductCost }
         );
-
-        return this;
-    }
-
-    addToTotal(amount) {
-        this.total = this.total + amount;
-        return this;
-    }
-
-    removeFromTotal(amount) {
-        this.total = this.total - amount;
-        if (this.total < 0)
-            this.total = 0;
-        
-        return this;
-    }
-
-    setScannedProducts(productType, newProduct) {
-        this.scannedProducts = {
-            ...this.scannedProducts,
-            [productType]: newProduct
-        }
-        console.log('================================');
-        console.log('productUpdated', productType);
-        console.log('objectUpdated', newProduct);
-        this.handleTotalAfterChange();
 
         return this;
     }
