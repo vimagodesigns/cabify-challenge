@@ -18,11 +18,14 @@ export class Checkout {
             quantity: 0,
             discount: 0,
             cost: 0,
-         })
+        });
+
+        return this;
     }
 
     initScannedProducts() {
         this.productList.map(product => this.clearScannedProduct(product.type));
+        return this;
     }
 
     findProduct(productType) {
@@ -45,12 +48,14 @@ export class Checkout {
     scanTimes(times, productType) {
         if (times === 0) {
             this.clearScannedProduct();
-            return;
+            return this;
         }
-
+        
         for (let index = 0; index < times; index++) {
             this.scan(productType);
         }
+
+        return this;
     }
 
     scan(productType) {
@@ -62,7 +67,10 @@ export class Checkout {
         const updatedPrice = this.findProduct(productType).price - singleDiscount;
         const updatedProductCost = currentProduct.cost + updatedPrice;
 
-        this.setScannedProducts(productType, { quantity, discount, cost: updatedProductCost });
+        this.setScannedProducts(
+            productType,
+            { quantity, discount, cost: updatedProductCost }
+        );
         
         return this;
         // NOTE
@@ -81,26 +89,32 @@ export class Checkout {
         if (currentQuantity === 0)
             return;
         
-        const price = this.findProduct(productType).price;
-        const singleDiscount = this.discount(productType, currentProduct.quantity);
         const quantity = currentProduct.quantity - 1;
-        const discount = currentProduct.discount - singleDiscount;
+        const singleDiscount = this.discount(productType, currentQuantity) || 0;
+        const productDiscount = currentProduct.discount;
+        const discount = productDiscount - singleDiscount;
+        const updatedPrice = this.findProduct(productType).price - singleDiscount;
+        const updatedProductCost = currentProduct.cost - updatedPrice;
 
-        this.setScannedProducts(productType, { quantity, discount, cost: price });
-
-        this.removeFromTotal(price + singleDiscount);
+        this.setScannedProducts(
+            productType,
+            { quantity, discount, cost: updatedProductCost }
+        );
 
         return this;
     }
 
     addToTotal(amount) {
         this.total = this.total + amount;
+        return this;
     }
 
     removeFromTotal(amount) {
         this.total = this.total - amount;
         if (this.total < 0)
             this.total = 0;
+        
+        return this;
     }
 
     setScannedProducts(productType, newProduct) {
@@ -112,6 +126,8 @@ export class Checkout {
         console.log('productUpdated', productType);
         console.log('objectUpdated', newProduct);
         this.handleTotalAfterChange();
+
+        return this;
     }
 
     handleTotalAfterChange() {
@@ -122,6 +138,8 @@ export class Checkout {
                 this.total = this.total + this.getScannedProduct(productKey).cost
         );
         console.log('TOTAL :::::', this.total);
+
+        return this;
     }
 
     // NOTE
