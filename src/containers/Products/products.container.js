@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useGlobal } from 'reactn';
 
 import ProductComponent from '../../components/Products/products.component';
 
-const productsContainer = props => {
+const ProductsContainer = () => {
     const productListElements = [
         {
             img: 'shirt.png',
@@ -27,9 +27,13 @@ const productsContainer = props => {
         },
     ];
 
+    const [, setProductsList] = useGlobal('productList');
+
+    setProductsList(productListElements);
+
     return (
-        <ProductComponent productListElements={productListElements} />
+        <ProductComponent />
     );
 };
 
-export default productsContainer;
+export default ProductsContainer;

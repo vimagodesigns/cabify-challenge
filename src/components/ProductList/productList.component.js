@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useGlobal } from 'reactn';
 
 import ProductItem from '../../containers/ProductItem/productItem.container';
 
-const ProductsListComponent = props => {
-    const { productListElements } = props;
+const ProductsListComponent = () => {
+    const [productList] = useGlobal('productList');
 
-    const createProductItems = () => productListElements.map(
+    const createProductItems = () => productList.map(
         (listItem) => <ProductItem itemProps={listItem} key={listItem.code} />
     );
     

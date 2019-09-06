@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useGlobal } from 'reactn';
 
 import ProductItemComponent from '../../components/ProductItem/productItem.component';
 
@@ -15,6 +15,7 @@ export const ProductsItemContainer = props => {
 
     const [quantity, setQuantity] = useState(0);
     const [totalProduct, setTotalProduct] = useState(0);
+    const [checkout] = useGlobal('checkout');
 
     const calculateTotalProduct = quantity => {
         const newTotalProduct = quantity * price;
@@ -33,7 +34,14 @@ export const ProductsItemContainer = props => {
         event.preventDefault();
 
         const newQuantity = quantity + 1;
-        
+
+        console.log(checkout.total);
+        checkout.add()
+        checkout.add()
+        console.log(checkout.total);
+
+
+
         setQuantity(newQuantity);
         calculateTotalProduct(newQuantity);
     }
