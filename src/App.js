@@ -1,18 +1,22 @@
 import React, { setGlobal } from 'reactn';
 import './App.css';
 
-import Products from './containers/Products/products.container';
+import ProductsComponent from './components/Products/products.component';
 import OrderSummaryComponent from './components/OrderSummary/orderSummary.component';
+import { Checkout } from './services/Checkout.class';
+import { pricingRules } from './config/pricingRules.config';
+
+const checkout = new Checkout(pricingRules);
 
 setGlobal({
-  checkout: null,
-  productList: [],
+  checkout,
+  productList: checkout.productList,
 });
 
 function App() {
   return (
     <main className="App">
-      <Products />
+      <ProductsComponent />
       <OrderSummaryComponent />
     </main>
   );
