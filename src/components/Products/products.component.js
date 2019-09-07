@@ -1,8 +1,9 @@
 import React from 'react';
 
 import ProductListComponent from '../ProductList/productList.component';
+import MainTitle from '../MainTitle/mainTitle.component';
 
-const productsComponent = props => {
+const ProductsComponent = props => {
     const defaultMainTitle = 'Shopping cart';
     const defaultHeadTitles = {
         detailsText: 'Product details',
@@ -24,7 +25,7 @@ const productsComponent = props => {
 
     return (
         <section className="products">
-            <h1 className="main">{mainTitle}</h1>
+            <MainTitle>{mainTitle}</MainTitle>
             <ul className="products-list tableHead">
                 <li className="products-list-title row">
                     <div className="col-product">{detailsText}</div>
@@ -39,4 +40,4 @@ const productsComponent = props => {
     );
 };
 
-export default productsComponent;
+export default ProductsComponent;

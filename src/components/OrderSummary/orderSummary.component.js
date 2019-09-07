@@ -1,9 +1,11 @@
 import React from 'react';
 
+import MainTitle from '../MainTitle/mainTitle.component';
+
 const orderSummaryComponent = props => {
     return (
         <aside className="summary">
-            <h1 className="main">Order Summary</h1>
+            <MainTitle>Order Summary</MainTitle>
             <ul className="summary-items wrapper border">
             <li>
                 <span className="summary-items-number">11 Items</span
