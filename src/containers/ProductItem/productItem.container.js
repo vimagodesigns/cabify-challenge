@@ -10,6 +10,9 @@ export const ProductsItemContainer = props => {
     const [quantity, setQuantity] = useState(0);
     const [totalProduct, setTotalProduct] = useState(0);
     const [checkout] = useGlobal('checkout');
+    const [, setCostWithoutDiscount] = useGlobal('costWithoutDiscount');
+    const [, setCostWithDiscount] = useGlobal('costWithDiscount');
+    const [, setTotalItems] = useGlobal('totalItems');
 
 
     const calculateTotalProduct = quantity => {
@@ -21,14 +24,17 @@ export const ProductsItemContainer = props => {
         const newQuantity = value || checkout.getScannedProduct(type).quantity;
         setQuantity(newQuantity);
         calculateTotalProduct(newQuantity);
+        setCostWithoutDiscount(checkout.totalWithoutDiscount);
+        setTotalItems(checkout.totalItems);
     }
 
     const handleChangeQuantity = event => {
         event.preventDefault();
+        console.log('*************************');
         const newQuantity = Number(event.target.value);
-        handleNewQuantity(newQuantity);
         checkout.clearScannedProduct(type);
         checkout.scanTimes(newQuantity, type);
+        handleNewQuantity(newQuantity);
 
     }
 

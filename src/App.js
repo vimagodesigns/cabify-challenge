@@ -11,6 +11,10 @@ const checkout = new Checkout(pricingRules);
 setGlobal({
   checkout,
   productList: checkout.productList,
+  costWithoutDiscount: 0,
+  costWithDiscount: 0,
+  totalItems: 0,
+  currency: '€',
 });
 
 function App() {

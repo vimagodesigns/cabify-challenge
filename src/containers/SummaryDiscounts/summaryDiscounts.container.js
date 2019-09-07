@@ -5,7 +5,7 @@ import SummaryListComponent from '../../components/SummaryList/summaryList.compo
 const SummaryDiscountItems = ({
     label,
     discount
-}) => <li><span>{label}</span><span>{discount}</span></li>
+}) => <li key={label}><span>{label}</span><span>{discount}</span></li>
 
 const SummaryDiscountsContainer = ({
     summaryDiscounts = [

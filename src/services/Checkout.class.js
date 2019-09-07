@@ -7,6 +7,8 @@ export class Checkout {
         this.total = 0;
         this.scannedProducts = {};
         this.initScannedProducts();
+        this.totalWithoutDiscount = 0;
+        this.totalItems = 0;
     }
 
     initScannedProducts() {
@@ -36,6 +38,7 @@ export class Checkout {
             quantity: 0,
             discount: 0,
             cost: 0,
+            costWithoutDiscount: 0,
         });
 
         return this;
@@ -77,14 +80,20 @@ export class Checkout {
         const singleDiscount = this.discount(productType, quantity) || 0;
         const productDiscount = currentProduct.discount;
         const discount =  productDiscount + singleDiscount;
-        const updatedPrice = this.findProduct(productType).price - singleDiscount;
+        const price = this.findProduct(productType).price;
+        const updatedPrice = price - singleDiscount;
         const updatedProductCost = currentProduct.cost + updatedPrice;
 
         this.setScannedProduct(
             productType,
-            { quantity, discount, cost: updatedProductCost }
+            {
+                quantity,
+                discount,
+                cost: updatedProductCost,
+                costWithoutDiscount: price * quantity,
+            }
         );
-        
+
         return this;
         // NOTE
         // "this" is the object from I have called this function
@@ -106,12 +115,18 @@ export class Checkout {
         const singleDiscount = this.discount(productType, currentQuantity) || 0;
         const productDiscount = currentProduct.discount;
         const discount = productDiscount - singleDiscount;
-        const updatedPrice = this.findProduct(productType).price - singleDiscount;
+        const price = this.findProduct(productType).price;
+        const updatedPrice = price - singleDiscount;
         const updatedProductCost = currentProduct.cost - updatedPrice;
 
         this.setScannedProduct(
             productType,
-            { quantity, discount, cost: updatedProductCost }
+            {
+                quantity,
+                discount,
+                cost: updatedProductCost,
+                costWithoutDiscount: price * quantity,
+            }
         );
 
         return this;
@@ -119,10 +134,20 @@ export class Checkout {
 
     handleTotalAfterChange() {
         this.total = 0;
+        this.totalWithoutDiscount = 0;
+        this.totalItems = 0;
+
         const scannedProductsKeys = Object.keys(this.scannedProducts);
+
         scannedProductsKeys.map(
-            productKey =>
-                this.total = this.total + this.getScannedProduct(productKey).cost
+            productKey => {
+                const product = this.getScannedProduct(productKey);
+                const costWithoutDiscount = product.costWithoutDiscount;
+                const items = product.quantity;
+                this.total = this.total + product.cost
+                this.totalWithoutDiscount = this.totalWithoutDiscount + costWithoutDiscount;
+                this.totalItems = this.totalItems + items;
+            }
         );
         console.log('TOTAL :::::', this.total);
 
