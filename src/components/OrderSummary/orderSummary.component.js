@@ -3,6 +3,7 @@ import React from 'react';
 import MainTitleComponent from '../MainTitle/mainTitle.component';
 import SummaryItems from '../../containers/SummaryItems/summaryItems.container';
 import SummaryDiscounts from '../../containers/SummaryDiscounts/summaryDiscounts.container';
+import SummaryTotal from '../../containers/SummaryTotal/summary.total';
 
 const orderSummaryComponent = props => {
     return (
@@ -10,16 +11,7 @@ const orderSummaryComponent = props => {
             <MainTitleComponent>Order Summary</MainTitleComponent>
             <SummaryItems />
             <SummaryDiscounts />
-            
-            <div className="summary-total wrapper">
-                <ul>
-                    <li>
-                        <span className="summary-total-cost">Total cost</span>
-                        <span className="summary-total-price">107€</span>
-                    </li>
-                </ul>
-                <button type="submit">Checkout</button>
-            </div>
+            <SummaryTotal />
         </aside>
     );
 };

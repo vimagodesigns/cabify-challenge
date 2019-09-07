@@ -27,6 +27,7 @@ const SummaryDiscountsContainer = ({
         <SummaryListComponent
             listClassName="summary-discounts"
             wrapperClassName="wrapper-half border"
+            title="Discounts"
         >
             {summaryDiscounts.map(
                 (discountProps) => SummaryDiscountItems(discountProps))
