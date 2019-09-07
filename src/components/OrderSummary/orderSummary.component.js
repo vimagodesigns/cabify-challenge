@@ -2,21 +2,15 @@ import React from 'react';
 
 import MainTitleComponent from '../MainTitle/mainTitle.component';
 import SummaryItems from '../../containers/SummaryItems/summaryItems.container';
+import SummaryDiscounts from '../../containers/SummaryDiscounts/summaryDiscounts.container';
 
 const orderSummaryComponent = props => {
     return (
         <aside className="summary">
             <MainTitleComponent>Order Summary</MainTitleComponent>
             <SummaryItems />
-
-            <div className=" wrapper-half border">
-                <h2>Discounts</h2>
-                <ul className="summary-discounts">
-                    <li><span>2x1 Mug offer</span><span>-10€</span></li>
-                    <li><span>x3 Shirt offer</span><span>-3€</span></li>
-                    <li><span>Promo code</span><span>0€</span></li>
-                </ul>
-            </div>
+            <SummaryDiscounts />
+            
             <div className="summary-total wrapper">
                 <ul>
                     <li>

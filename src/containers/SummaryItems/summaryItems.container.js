@@ -8,7 +8,10 @@ const SummaryItemsContainer = ({
     currency = '€'
 }) => {
     return (
-        <SummaryListComponent>
+        <SummaryListComponent
+            listClassName="summary-items"
+            wrapperClassName="wrapper border"
+        >
             <li>
                 <span className="summary-items-number">{itemsCount} Items</span>
                 <span className="summary-items-price">
