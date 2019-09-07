@@ -4,15 +4,18 @@ import ProductItemComponent from '../../components/ProductItem/productItem.compo
 
 export const ProductsItemContainer = props => {
     const {
-        itemProps: { img, description, code, price, currency, type } = {},
+        itemProps: { img, description, code, price, type } = {},
     } = props;
 
     const [quantity, setQuantity] = useState(0);
     const [totalProduct, setTotalProduct] = useState(0);
+
+    const [currency] = useGlobal('currency');
     const [checkout] = useGlobal('checkout');
     const [, setCostWithoutDiscount] = useGlobal('costWithoutDiscount');
     const [, setCostWithDiscount] = useGlobal('costWithDiscount');
     const [, setTotalItems] = useGlobal('totalItems');
+    const [, setScannedProducts] = useGlobal('scannedProducts');
 
 
     const calculateTotalProduct = quantity => {
@@ -26,16 +29,16 @@ export const ProductsItemContainer = props => {
         calculateTotalProduct(newQuantity);
         setCostWithoutDiscount(checkout.totalWithoutDiscount);
         setTotalItems(checkout.totalItems);
+        setScannedProducts(checkout.scannedProducts);
+        setCostWithDiscount(checkout.total());
     }
 
     const handleChangeQuantity = event => {
         event.preventDefault();
-        console.log('*************************');
         const newQuantity = Number(event.target.value);
         checkout.clearScannedProduct(type);
         checkout.scanTimes(newQuantity, type);
         handleNewQuantity(newQuantity);
-
     }
 
     const handleIncreaseQuantity = event => {
@@ -46,6 +49,8 @@ export const ProductsItemContainer = props => {
     
     const handleDecreaseQuantity = event => {
         event.preventDefault();
+        if (event.target.value === 0)
+            return;
         checkout.unscan(type);
         handleNewQuantity();
     }

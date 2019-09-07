@@ -4,7 +4,7 @@ export class Checkout {
     constructor(pricingRules = {}) {
         this.pricingRules = pricingRules;
         this.productList = productList;
-        this.total = 0;
+        this.totalWithDiscount = 0;
         this.scannedProducts = {};
         this.initScannedProducts();
         this.totalWithoutDiscount = 0;
@@ -25,9 +25,6 @@ export class Checkout {
             ...this.scannedProducts,
             [productType]: newProduct
         }
-        console.log('================================');
-        console.log('productUpdated', productType);
-        console.log('objectUpdated', newProduct);
         this.handleTotalAfterChange();
 
         return this;
@@ -39,6 +36,7 @@ export class Checkout {
             discount: 0,
             cost: 0,
             costWithoutDiscount: 0,
+            discountLabel: this.getDiscountLabel(productType),
         });
 
         return this;
@@ -47,17 +45,23 @@ export class Checkout {
     findProduct(productType) {
         return this.productList.find((product) => product.type === productType);
     }
+
+    hasProductRule(productType) {
+        return !!this.pricingRules[productType];
+    }
+
+    getDiscountLabel(productType) {
+        return this.hasProductRule(productType) ?
+            this.pricingRules[productType].label :
+            '';
+    }
  
     discount(productType, quantity) {
-        const formattedProduct = {
-            ...this.findProduct(productType),
-            quantity,
-        };
-
-        const hasRule = !!this.pricingRules[productType];
-        const productDiscount =  hasRule ?
-            this.pricingRules[productType](formattedProduct) : 
-            0;
+        const product = this.findProduct(productType);
+        const formattedProduct = { ...product, quantity };
+        const hasRule = this.hasProductRule(productType);
+        const executeRule = () =>  this.pricingRules[productType].rule(formattedProduct);
+        const productDiscount =  hasRule ? executeRule() : 0;
         return productDiscount;
     }
 
@@ -87,6 +91,7 @@ export class Checkout {
         this.setScannedProduct(
             productType,
             {
+                ...currentProduct,
                 quantity,
                 discount,
                 cost: updatedProductCost,
@@ -122,6 +127,7 @@ export class Checkout {
         this.setScannedProduct(
             productType,
             {
+                ...currentProduct,
                 quantity,
                 discount,
                 cost: updatedProductCost,
@@ -133,25 +139,30 @@ export class Checkout {
     }
 
     handleTotalAfterChange() {
-        this.total = 0;
+        this.totalWithDiscount = 0;
         this.totalWithoutDiscount = 0;
         this.totalItems = 0;
 
         const scannedProductsKeys = Object.keys(this.scannedProducts);
 
         scannedProductsKeys.map(
-            productKey => {
-                const product = this.getScannedProduct(productKey);
-                const costWithoutDiscount = product.costWithoutDiscount;
-                const items = product.quantity;
-                this.total = this.total + product.cost
-                this.totalWithoutDiscount = this.totalWithoutDiscount + costWithoutDiscount;
-                this.totalItems = this.totalItems + items;
-            }
+            productKey => this.handleTotalAfterChangeByProductKey(productKey)
         );
-        console.log('TOTAL :::::', this.total);
 
         return this;
+    }
+
+    handleTotalAfterChangeByProductKey(productKey) {
+        const product = this.getScannedProduct(productKey);
+        const costWithoutDiscount = product.costWithoutDiscount;
+        const items = product.quantity;
+        this.totalWithDiscount = this.totalWithDiscount + product.cost
+        this.totalWithoutDiscount = this.totalWithoutDiscount + costWithoutDiscount;
+        this.totalItems = this.totalItems + items;
+    }
+
+    total() {
+        return this.totalWithDiscount;
     }
 
     // NOTE

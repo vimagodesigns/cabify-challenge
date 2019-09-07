@@ -15,6 +15,7 @@ setGlobal({
   costWithDiscount: 0,
   totalItems: 0,
   currency: '€',
+  scannedProducts: checkout.scannedProducts,
 });
 
 function App() {
