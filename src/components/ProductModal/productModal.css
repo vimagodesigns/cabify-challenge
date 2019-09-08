@@ -12,8 +12,11 @@
 
 .image-section {
     flex: 1;
-    padding: 40px 32px 40px 56px;
+    padding: 0;
     background-color: #f3f3f3;
+    max-width: 100%;
+    overflow: hidden;
+    margin-top: -26%;
 }
 
 .close-button {
