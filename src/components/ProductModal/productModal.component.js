@@ -4,12 +4,12 @@ import './productModal.css';
 import CloseSvgComponent from '../svg/close/closeSvg.component';
 
 const ProductModalComponent = ({
-    img = 'tshirt.jpg',
-    description = 'Shirt',
-    fullDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet bibendum enim. In massa tempor nec feugiat.',
-    code = 'X7R2OPX',
-    price = 20,
-    currency='€',
+    img,
+    description,
+    fullDescription,
+    code,
+    price,
+    currency,
     closeModal,
 }) => {
 

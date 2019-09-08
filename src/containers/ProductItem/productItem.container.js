@@ -1,12 +1,10 @@
 import React, { useState, useGlobal } from 'reactn';
 
 import ProductItemComponent from '../../components/ProductItem/productItem.component';
-import ProductModalComponent from '../../components/ProductModal/productModal.component';
+import ProductModalContainer from '../ProductModal/productModal.container';
 
-export const ProductsItemContainer = props => {
-    const {
-        itemProps: { thumbnail, description, code, price, type } = {},
-    } = props;
+export const ProductsItemContainer = ({ product }) => {
+    const { thumbnail, description, code, price, type } = product;
 
     const [quantity, setQuantity] = useState(0);
     const [totalProduct, setTotalProduct] = useState(0);
@@ -18,6 +16,7 @@ export const ProductsItemContainer = props => {
     const [, setTotalItems] = useGlobal('totalItems');
     const [, setScannedProducts] = useGlobal('scannedProducts');
     const [modalComponentList, setModalComponentList] = useGlobal('modalComponentList');
+    const [, setProductSelected] = useGlobal('productSelected');
 
 
     const calculateTotalProduct = quantity => {
@@ -59,11 +58,11 @@ export const ProductsItemContainer = props => {
 
     const handleClickDetails = event => {
         event.preventDefault();
+        setProductSelected(product);
         setModalComponentList([
-            ProductModalComponent,
+            ProductModalContainer,
             ...modalComponentList,
         ]);
-        console.log('AQUI ES DONDE ABRIMOS EL MODAL');
     }
 
     return (

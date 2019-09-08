@@ -4,7 +4,7 @@ import ProductItem from '../../containers/ProductItem/productItem.container';
 
 const ProductsListComponent = ({ productList }) => {
     const createProductItems = () => productList.map(
-        (listItem) => <ProductItem itemProps={listItem} key={listItem.code} />
+        (listItem) => <ProductItem product={listItem} key={listItem.code} />
     );
     
     return (

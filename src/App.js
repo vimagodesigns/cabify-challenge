@@ -18,6 +18,7 @@ setGlobal({
   currency: '€',
   scannedProducts: checkout.scannedProducts,
   modalComponentList: [],
+  productSelected: {},
 });
 
 function App() {
