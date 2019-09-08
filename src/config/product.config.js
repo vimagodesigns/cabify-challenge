@@ -9,14 +9,14 @@ export const productList = [
         code: 'X7R2OPX',
         price: 20,
         type: TSHIRT,
-        // discountRule: (price) => (quantity) => 
+        // TODO ojo con esto discountRule: (price) => (quantity) => 
         //     getPriceAndDiscountByAmount(3, 1, quantity, price),
     },
     {
         thumbnail: 'mug.png',
         img: '',
         description: 'Mug',
-        fullDescription: '"Come on, it is only a mug but", I can read your mind but what if I tell you "BUY 2 AND GET 1 FOR FREE. Do not miss this uncredible opportunity!!! It has no image, if you wanna see an image go to the t-shirt details',
+        fullDescription: '"Come on, it is only a mug", I can read your mind but what if I tell you "BUY 2 AND GET 1 FOR FREE. Do not miss this uncredible opportunity!!! It has no image, if you wanna see an image go to the t-shirt details',
         code: 'X2G2OPZ',
         price: 5,
         type: MUG,
