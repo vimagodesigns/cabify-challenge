@@ -8,25 +8,10 @@ import { UPDATE_PRODUCTS, SELECT_PRODUCT, SET_MODAL_COMPONENT } from '../../redu
 export const ProductsItemContainer = ({ product }) => {
     const { thumbnail, description, code, price, type } = product;
 
-    const [
-        {
-            currency,
-            checkout,
-            scannedProducts,
-        },
-        dispatch
-    ] = useStateValue();
-
-    console.log('::: 1 :::', currency);
-    console.log('::: 2 :::', checkout);
-    console.log('::: 3 :::', scannedProducts);
+    const [{ currency, checkout, scannedProducts }, dispatch] = useStateValue();
 
     const handleNewQuantity = () => {
         dispatch({ type: UPDATE_PRODUCTS });
-        // setCostWithoutDiscount(checkout.totalWithoutDiscount);
-        // setTotalItems(checkout.totalItems);
-        // setScannedProducts(checkout.scannedProducts);
-        // setCostWithDiscount(checkout.total());
     }
 
     const handleChangeQuantity = event => {
@@ -54,12 +39,7 @@ export const ProductsItemContainer = ({ product }) => {
     const handleClickDetails = event => {
         event.preventDefault();
         dispatch({ type: SELECT_PRODUCT, payload: product });
-        // setProductSelected(product);
         dispatch({ type: SET_MODAL_COMPONENT, payload: ProductModalContainer });
-        // setModalComponentList([
-        //     ProductModalContainer,
-        //     ...modalComponentList,
-        // ]);
     }
 
     return (
