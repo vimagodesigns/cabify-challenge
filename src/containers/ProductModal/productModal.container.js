@@ -1,34 +1,30 @@
-import React, { useGlobal } from 'reactn';
+import React from 'react';
 import ProductModalComponent from '../../components/ProductModal/productModal.component';
+import { useStateValue } from '../../stateManagment/state';
+import { RESET_SELECT_PRODUCT, UPDATE_PRODUCTS } from '../../reducers/checkout.reducer';
 
 const ProductModalContainer = ({ closeModal }) => {
-
-    const [productSelected, setProductSelected] = useGlobal('productSelected');
-    const [currency] = useGlobal('currency');
-    const [checkout] = useGlobal('checkout');
-
-    const [, setCostWithoutDiscount] = useGlobal('costWithoutDiscount');
-    const [, setCostWithDiscount] = useGlobal('costWithDiscount');
-    const [, setTotalItems] = useGlobal('totalItems');
-    const [, setScannedProducts] = useGlobal('scannedProducts');
+    const [
+        {
+            checkout,
+            currency,
+            productSelected,
+        },
+        dispatch
+    ] = useStateValue();
 
     const handleCloseModal = event => {
         event.preventDefault();
         closeModal();
-        setProductSelected({})
+        dispatch({ type: RESET_SELECT_PRODUCT });
     }
     
     const handleCheckout = event => {
         event.preventDefault();
         checkout.scan(productSelected.type)
         closeModal();
-
-        // TODO This is exactly the same code than product item container, I would like to do an utils
-        // but useGlobal is from hooks and it should be in a react component to work
-        setCostWithoutDiscount(checkout.totalWithoutDiscount);
-        setTotalItems(checkout.totalItems);
-        setScannedProducts(checkout.scannedProducts);
-        setCostWithDiscount(checkout.total());
+        dispatch({ type: UPDATE_PRODUCTS });
+        dispatch({ type: RESET_SELECT_PRODUCT })
     }
 
     return (

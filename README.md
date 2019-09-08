@@ -1,4 +1,4 @@
-For the store https://github.com/CharlesStover/reactn
+THIS IS FOR THE STATE MANAGMENT https://medium.com/simply/state-management-with-react-hooks-and-context-api-at-10-lines-of-code-baf6be8302c
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

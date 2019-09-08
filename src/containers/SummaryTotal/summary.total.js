@@ -1,10 +1,10 @@
-import React, { Fragment, useGlobal } from 'reactn';
+import React, { Fragment } from 'react';
 
 import SummaryListComponent from '../../components/SummaryList/summaryList.component';
+import { useStateValue } from '../../stateManagment/state';
 
 const SummaryTotalContainer = () => {
-    const [currency] = useGlobal('currency'); 
-    const [costWithDiscount] = useGlobal('costWithDiscount'); 
+    const [{ costWithDiscount, currency }] = useStateValue(); 
 
     return (
         <Fragment>

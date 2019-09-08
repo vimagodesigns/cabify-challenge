@@ -1,11 +1,10 @@
-import React, { useGlobal } from 'reactn';
+import React from 'react';
 
 import SummaryListComponent from '../../components/SummaryList/summaryList.component';
+import { useStateValue } from '../../stateManagment/state';
 
 const SummaryItemsContainer = () => {
-    const [totalPrice] = useGlobal('costWithoutDiscount');
-    const [totalItems] = useGlobal('totalItems');
-    const [currency] = useGlobal('currency');
+    const [{ costWithoutDiscount, totalItems, currency }] = useStateValue();
 
     return (
         <SummaryListComponent
@@ -15,7 +14,7 @@ const SummaryItemsContainer = () => {
             <li>
                 <span className="summary-items-number">{totalItems} Items</span>
                 <span className="summary-items-price">
-                    {totalPrice} <span className="currency">{currency}</span>
+                    {costWithoutDiscount} <span className="currency">{currency}</span>
                 </span>
             </li>
         </SummaryListComponent>

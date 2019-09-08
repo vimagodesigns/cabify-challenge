@@ -1,17 +1,15 @@
-import React, { useGlobal } from 'reactn';
+import React from 'react';
 
 import './modal.css';
+import { useStateValue } from '../../stateManagment/state';
+import { CLOSE_MODAL_COMPONENT } from '../../reducers/checkout.reducer';
 
 const Modal = () => {
-    const [modalComponentList, setModalComponentList] = useGlobal('modalComponentList');
+    const [{ modalComponentList }, dispatch] = useStateValue();
     const ModalComponent = modalComponentList[0];
     
     const closeModal = () => {
-        const newModalComponentList = modalComponentList
-            .filter((component) => component !== ModalComponent);
-        
-            
-        setModalComponentList(newModalComponentList);
+        dispatch({ type: CLOSE_MODAL_COMPONENT, payload: modalComponentList[0] });
     }
 
     return (

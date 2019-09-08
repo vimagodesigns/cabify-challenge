@@ -1,12 +1,13 @@
-import React, { useGlobal } from 'reactn';
+import React from 'react';
 
 import SummaryListComponent from '../../components/SummaryList/summaryList.component';
+import { useStateValue } from '../../stateManagment/state';
 
 const SummaryDiscountItems = ({
     discountLabel,
     discount
 }) => {
-    const [currency] = useGlobal('currency');
+    const [{ currency }] = useStateValue();
 
     const getDiscountString = () => {
         return discount === 0 ?
@@ -22,7 +23,7 @@ const SummaryDiscountItems = ({
 }
 
 const SummaryDiscountsContainer = () => {
-    const [scannedProducts] = useGlobal('scannedProducts');
+    const [{ scannedProducts }] = useStateValue();
     const scannedProductsKeys = Object.keys(scannedProducts);
 
     const mapSummaryDiscounts = () => (
@@ -30,10 +31,6 @@ const SummaryDiscountsContainer = () => {
             .filter((key) => scannedProducts[key].discountLabel !== '')
             .map((key) => SummaryDiscountItems(scannedProducts[key]))
     );
-            
-            
-            
-            // (discountProps) => SummaryDiscountItems(discountProps)
 
     return (
         <SummaryListComponent

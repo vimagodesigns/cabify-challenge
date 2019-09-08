@@ -1,36 +1,31 @@
-import React, { setGlobal, useGlobal } from 'reactn';
+import React from 'react';
 import './App.css';
 
-import ProductsComponent from './components/Products/products.component';
-import OrderSummaryComponent from './components/OrderSummary/orderSummary.component';
 import { Checkout } from './services/Checkout.class';
 import { pricingRules } from './config/pricingRules.config';
-import ModalComponent from './components/Modal/modal.component';
+import { StateProvider } from './stateManagment/state';
+import Main from './containers/Main/main.container';
+import { reducer } from './reducers/checkout.reducer';
 
 const checkout = new Checkout(pricingRules);
 
-setGlobal({
-  checkout,
-  productList: checkout.productList,
-  costWithoutDiscount: 0,
-  costWithDiscount: 0,
-  totalItems: 0,
-  currency: '€',
-  scannedProducts: checkout.scannedProducts,
-  modalComponentList: [],
-  productSelected: {},
-});
-
 function App() {
-  const [modalComponentList] = useGlobal('modalComponentList');
-  const isModalVisible = !!modalComponentList.length;
+  const initialState = {
+    checkout,
+    productList: checkout.productList,
+    costWithoutDiscount: 0,
+    costWithDiscount: 0,
+    totalItems: 0,
+    currency: '€',
+    scannedProducts: checkout.scannedProducts,
+    modalComponentList: [],
+    productSelected: {},
+  };
 
   return (
-    <main className="App">
-      <ProductsComponent />
-      <OrderSummaryComponent />
-      {isModalVisible && <ModalComponent />}
-    </main>
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <Main />
+    </StateProvider>
   );
 }
 
