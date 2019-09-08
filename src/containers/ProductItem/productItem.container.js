@@ -1,10 +1,11 @@
 import React, { useState, useGlobal } from 'reactn';
 
 import ProductItemComponent from '../../components/ProductItem/productItem.component';
+import ProductModalComponent from '../../components/ProductModal/productModal.component';
 
 export const ProductsItemContainer = props => {
     const {
-        itemProps: { img, description, code, price, type } = {},
+        itemProps: { thumbnail, description, code, price, type } = {},
     } = props;
 
     const [quantity, setQuantity] = useState(0);
@@ -16,6 +17,7 @@ export const ProductsItemContainer = props => {
     const [, setCostWithDiscount] = useGlobal('costWithDiscount');
     const [, setTotalItems] = useGlobal('totalItems');
     const [, setScannedProducts] = useGlobal('scannedProducts');
+    const [modalComponentList, setModalComponentList] = useGlobal('modalComponentList');
 
 
     const calculateTotalProduct = quantity => {
@@ -55,10 +57,18 @@ export const ProductsItemContainer = props => {
         handleNewQuantity();
     }
 
+    const handleClickDetails = event => {
+        event.preventDefault();
+        setModalComponentList([
+            ProductModalComponent,
+            ...modalComponentList,
+        ]);
+        console.log('AQUI ES DONDE ABRIMOS EL MODAL');
+    }
 
     return (
         <ProductItemComponent
-            img={img}
+            thumbnail={thumbnail}
             description={description}
             code={code}
             price={price}
@@ -68,6 +78,7 @@ export const ProductsItemContainer = props => {
             increaseQuantity={handleIncreaseQuantity}
             decreaseQuantity={handleDecreaseQuantity}
             totalProduct={totalProduct}
+            onClickDetails={handleClickDetails}
         />
     );
 };

@@ -2,8 +2,10 @@ import { TSHIRT, MUG, CAP } from "../constants/products.constants";
 
 export const productList = [
     {
-        img: 'shirt.png',
+        thumbnail: 'shirt.png',
+        img: 'tshirt.png',
         description: 'Shirt',
+        fullDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet bibendum enim. In massa tempor nec feugiat.',
         code: 'X7R2OPX',
         price: 20,
         type: TSHIRT,
@@ -11,8 +13,10 @@ export const productList = [
         //     getPriceAndDiscountByAmount(3, 1, quantity, price),
     },
     {
-        img: 'mug.png',
+        thumbnail: 'mug.png',
+        img: '',
         description: 'Mug',
+        fullDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet bibendum enim. In massa tempor nec feugiat.',
         code: 'X2G2OPZ',
         price: 5,
         type: MUG,
@@ -20,18 +24,21 @@ export const productList = [
         //     getDiscountByPercentage(3, 1, quantity, price),
     },
     {
-        img: 'cap.png',
+        thumbnail: 'cap.png',
+        img: '',
         description: 'Cap',
+        fullDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet bibendum enim. In massa tempor nec feugiat.',
         code: 'X3W2OPY',
         price: 10,
         type: CAP,
     },
     // {
-    //     img: 'cap.png',
+    //     thumbnail: 'cap.png',
+    //     img: '',
     //     description: 'This is not a CAP',
+    //     fullDescription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet bibendum enim. In massa tempor nec feugiat.',
     //     code: 'CUSTOM',
     //     price: 15,
     //     type: 'CUSTOM',
-        // discountRule: null,
     // },
 ];

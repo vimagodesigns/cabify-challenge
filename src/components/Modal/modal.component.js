@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useGlobal } from 'reactn';
 
 import './modal.css';
 
-const modal = ({ children }) => (
-    <div className="modal">
-        {children}
-    </div>
-);
+const Modal = () => {
+    const [modalComponentList, setModalComponentList] = useGlobal('modalComponentList');
+    const ModalComponent = modalComponentList[0];
+    
+    const closeModal = () => {
+        const newModalComponentList = modalComponentList
+            .filter((component) => component !== ModalComponent);
+        
+            
+        setModalComponentList(newModalComponentList);
+    }
 
-export default modal;
+    return (
+        <div className="modal">
+            <ModalComponent closeModal={closeModal} />
+        </div>
+    )
+};
+
+export default Modal;

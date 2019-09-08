@@ -298,6 +298,7 @@ h1 {
 
 .col-product {
   width: 45%;
+  cursor: pointer;
 }
 
 .col-quantity {

@@ -12,9 +12,10 @@ const ProductsItemComponent = props => {
     } = props;
 
     const productDetailsProps = {
-        img: props.img,
+        thumbnail: props.thumbnail,
         description: props.description,
         code: props.code,
+        onClickDetails: props.onClickDetails,
     };
 
     const quantityInputProps = {
