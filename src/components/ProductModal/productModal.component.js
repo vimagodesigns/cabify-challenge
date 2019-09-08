@@ -11,6 +11,7 @@ const ProductModalComponent = ({
     price,
     currency,
     closeModal,
+    handleCheckout,
 }) => {
 
     return (
@@ -41,7 +42,7 @@ const ProductModalComponent = ({
                         <p className="product-code">Product code {code}</p>
                     </div>
                     <div className="description-actions wrapper">
-                        <button type="submit">Add to cart</button>
+                        <button type="submit" onClick={handleCheckout}>Add to cart</button>
                     </div>
                 </main>
             </aside>

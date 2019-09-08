@@ -32,6 +32,7 @@ export class Checkout {
 
     clearScannedProduct(productType) {
         this.setScannedProduct(productType, {
+            productType,
             quantity: 0,
             discount: 0,
             cost: 0,

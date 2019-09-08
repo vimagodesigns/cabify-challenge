@@ -1,4 +1,4 @@
-import React, { useState, useGlobal } from 'reactn';
+import React, { useGlobal } from 'reactn';
 
 import ProductItemComponent from '../../components/ProductItem/productItem.component';
 import ProductModalContainer from '../ProductModal/productModal.container';
@@ -6,28 +6,17 @@ import ProductModalContainer from '../ProductModal/productModal.container';
 export const ProductsItemContainer = ({ product }) => {
     const { thumbnail, description, code, price, type } = product;
 
-    const [quantity, setQuantity] = useState(0);
-    const [totalProduct, setTotalProduct] = useState(0);
-
     const [currency] = useGlobal('currency');
     const [checkout] = useGlobal('checkout');
     const [, setCostWithoutDiscount] = useGlobal('costWithoutDiscount');
     const [, setCostWithDiscount] = useGlobal('costWithDiscount');
     const [, setTotalItems] = useGlobal('totalItems');
-    const [, setScannedProducts] = useGlobal('scannedProducts');
+    const [scannedProducts, setScannedProducts] = useGlobal('scannedProducts');
     const [modalComponentList, setModalComponentList] = useGlobal('modalComponentList');
     const [, setProductSelected] = useGlobal('productSelected');
 
 
-    const calculateTotalProduct = quantity => {
-        const newTotalProduct = quantity * price;
-        setTotalProduct(newTotalProduct);
-    };
-
-    const handleNewQuantity = value => {
-        const newQuantity = value || checkout.getScannedProduct(type).quantity;
-        setQuantity(newQuantity);
-        calculateTotalProduct(newQuantity);
+    const handleNewQuantity = () => {
         setCostWithoutDiscount(checkout.totalWithoutDiscount);
         setTotalItems(checkout.totalItems);
         setScannedProducts(checkout.scannedProducts);
@@ -39,7 +28,7 @@ export const ProductsItemContainer = ({ product }) => {
         const newQuantity = Number(event.target.value);
         checkout.clearScannedProduct(type);
         checkout.scanTimes(newQuantity, type);
-        handleNewQuantity(newQuantity);
+        handleNewQuantity();
     }
 
     const handleIncreaseQuantity = event => {
@@ -72,11 +61,11 @@ export const ProductsItemContainer = ({ product }) => {
             code={code}
             price={price}
             currency={currency}
-            quantity={quantity}
+            quantity={scannedProducts[type].quantity}
+            totalProduct={scannedProducts[type].costWithoutDiscount}
             onChageQuantity={handleChangeQuantity}
             increaseQuantity={handleIncreaseQuantity}
             decreaseQuantity={handleDecreaseQuantity}
-            totalProduct={totalProduct}
             onClickDetails={handleClickDetails}
         />
     );
