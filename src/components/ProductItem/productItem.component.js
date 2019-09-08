@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ProductDetais from '../ProductDetails/productDetails.component';
-import QuantityInputComponent from '../QuantityInput/quantitiInput.component';
+import QuantityInputComponent from '../QuantityInput/quantityInput.component';
 import ProductAmountComponent from '../ProductAmount/productAmount.component';
 
 const ProductsItemComponent = props => {
