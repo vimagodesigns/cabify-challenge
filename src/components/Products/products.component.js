@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ProductListComponent from '../ProductList/productList.component';
+import ProductList from '../../containers/ProductList/productList.container';
 import MainTitle from '../MainTitle/mainTitle.component';
 
 const ProductsComponent = props => {
@@ -34,7 +34,7 @@ const ProductsComponent = props => {
                     <div className="col-total">{totalText}</div>
                 </li>
             </ul>
-            <ProductListComponent productListElements={productListElements} />
+            <ProductList productListElements={productListElements} />
         </section>
 
     );

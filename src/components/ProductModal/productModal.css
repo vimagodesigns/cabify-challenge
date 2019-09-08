@@ -1,0 +1,108 @@
+.product-modal {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    transform: initial;
+}
+
+.image-section {
+    flex: 1;
+    padding: 40px 32px 40px 56px;
+    background-color: #f3f3f3;
+}
+
+.close-button {
+    cursor: pointer;
+}
+
+.description-section header {
+    text-align: right;
+}
+
+.description-section main {
+    margin-top: 75px;
+}
+
+.description-section .description p {
+    font-weight: bold;
+    text-align: justify;
+    line-height: 1.5;
+    font-size: 0.7rem;
+    margin-bottom: 24px;
+}
+
+.description-section .code {
+    text-align: left;
+    padding: 10px 0;
+}
+
+.description-section input,
+.description-section ul li {
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.description-section {
+    display: flex;
+    flex-flow: column wrap;
+    padding: 40px 32px;
+    width: 312px;
+    background-color: #ffffff;
+    color: #212240;
+  }
+  
+  .description-section > * {
+    width: 100%;
+  }
+  
+  
+  
+  .description-section input {
+    margin: 8px auto;
+    color: #a6a7b3;
+    text-indent: 16px;
+    text-transform: uppercase;
+  }
+  
+  .description-section input::placeholder {
+    color: #a6a7b3;
+    text-transform: lowercase;
+  }
+  
+  .description-section ul li {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .description-section ul li > *:nth-child(2) {
+    font-weight: bold;
+  }
+  
+  .description-section ul li + li {
+    margin-top: 20px;
+  }
+  
+  .description-section button[type="submit"] {
+    padding-top: 16px;
+    padding-bottom: 16px;
+    width: 100%;
+    border-radius: 4px;
+    background: #7350ff;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 14px;
+    cursor: pointer;
+  }
+
+
+
+  .summary-items-price {
+    font-size: 16px;
+    font-weight: bold;
+  }
