@@ -1,8 +1,8 @@
 import React from 'react';
 
-import ProductDetais from '../ProductDetails/productDetails.component';
-import QuantityInputComponent from '../QuantityInput/quantityInput.component';
-import ProductAmountComponent from '../ProductAmount/productAmount.component';
+import ProductDetais from '../../atoms/ProductDetails/productDetails.component';
+import QuantityInputComponent from '../../atoms/QuantityInput/quantityInput.component';
+import ProductAmountComponent from '../../atoms/ProductAmount/productAmount.component';
 
 const ProductsItemComponent = ({
     price,

@@ -14,7 +14,7 @@ const CloseSvg = ({
 );
 
 
-// TLogo.propTypes = {
+// TODO TLogo.propTypes = {
 //   className: PropTypes.string,
 //   fill: PropTypes.string,
 // };

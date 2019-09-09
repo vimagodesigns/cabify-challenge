@@ -1,12 +1,12 @@
 import React from 'react';
 import Modal from '../Modal/modal.container';
 import { useStateValue } from '../../stateManagment/state';
-import ProductsHeaderComponent from '../../components/ProductsHeader/productsHeader.component';
+import ProductsHeaderComponent from '../../components/molecules/ProductsHeader/productsHeader.component';
 import ProductsList from '../ProductList/productList.container';
-import MainTitleComponent from '../../components/MainTitle/mainTitle.component';
-import SummaryItemsComponent from '../../components/SummaryItems/summaryItems.component';
+import MainTitleComponent from '../../components/atoms/MainTitle/mainTitle.component';
+import SummaryItemsComponent from '../../components/molecules/SummaryItems/summaryItems.component';
 import SummaryDiscounts from '../SummaryDiscounts/summaryDiscounts.container';
-import SummaryTotalComponent from '../../components/SummaryTotal/summaryTotal.component';
+import SummaryTotalComponent from '../../components/molecules/SummaryTotal/summaryTotal.component';
 
 const Main = () => {
     const [{

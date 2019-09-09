@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductModalComponent from '../../components/ProductModal/productModal.component';
+import ProductModalComponent from '../../components/molecules/ProductModal/productModal.component';
 import { useStateValue } from '../../stateManagment/state';
 import { RESET_SELECT_PRODUCT, UPDATE_PRODUCTS } from '../../reducers/checkout.reducer';
 

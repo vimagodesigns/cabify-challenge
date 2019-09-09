@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useStateValue } from '../../stateManagment/state';
-import ProductsItemComponent from '../../components/ProductItem/productItem.component';
+import ProductsItemComponent from '../../components/organisms/ProductItem/productItem.component';
 import ProductModalContainer from '../ProductModal/productModal.container';
 import { SET_MODAL_COMPONENT, SELECT_PRODUCT, UPDATE_PRODUCTS } from '../../reducers/checkout.reducer';
 import { less } from '../../utils/common.utils';

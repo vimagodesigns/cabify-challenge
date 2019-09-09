@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './productModal.css';
-import CloseSvgComponent from '../svg/close/closeSvg.component';
+import CloseSvgComponent from '../../atoms/svg/close/closeSvg.component';
 
 const ProductModalComponent = ({
     img,

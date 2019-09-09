@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import MainTitleComponent from '../MainTitle/mainTitle.component';
+import MainTitleComponent from '../../atoms/MainTitle/mainTitle.component';
 
 const ProductsHeaderComponent = ({
     mainTitle,

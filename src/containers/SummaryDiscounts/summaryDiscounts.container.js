@@ -1,8 +1,8 @@
 import React from 'react';
 
-import SummaryListComponent from '../../components/SummaryList/summaryList.component';
+import SummaryListComponent from '../../components/atoms/SummaryList/summaryList.component';
 import { useStateValue } from '../../stateManagment/state';
-import SummaryDiscountItemComponent from '../../components/SummaryDiscountItems/summaryDiscountItems.component';
+import SummaryDiscountItemComponent from '../../components/atoms/SummaryDiscountItems/summaryDiscountItems.component';
 
 const SummaryDiscountsContainer = () => {
     const [{ scannedProducts }] = useStateValue();

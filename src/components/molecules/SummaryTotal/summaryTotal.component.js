@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import SummaryListComponent from '../SummaryList/summaryList.component';
+import SummaryListComponent from '../../atoms/SummaryList/summaryList.component';
 
 const SummaryTotalComponent = ({ costWithDiscount, currency }) => (
     <Fragment>
