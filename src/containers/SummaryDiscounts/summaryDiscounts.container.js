@@ -3,6 +3,7 @@ import React from 'react';
 import SummaryListComponent from '../../components/SummaryList/summaryList.component';
 import { useStateValue } from '../../stateManagment/state';
 
+// TODO - this is a component
 const SummaryDiscountItems = ({
     discountLabel,
     discount

@@ -4,14 +4,7 @@ import { useStateValue } from '../../stateManagment/state';
 import { RESET_SELECT_PRODUCT, UPDATE_PRODUCTS } from '../../reducers/checkout.reducer';
 
 const ProductModalContainer = ({ closeModal }) => {
-    const [
-        {
-            checkout,
-            currency,
-            productSelected,
-        },
-        dispatch
-    ] = useStateValue();
+    const [{ checkout, currency, productSelected }, dispatch] = useStateValue();
 
     const handleCloseModal = event => {
         event.preventDefault();
@@ -22,8 +15,8 @@ const ProductModalContainer = ({ closeModal }) => {
     const handleCheckout = event => {
         event.preventDefault();
         checkout.scan(productSelected.type)
-        closeModal();
         dispatch({ type: UPDATE_PRODUCTS });
+        closeModal();
         dispatch({ type: RESET_SELECT_PRODUCT })
     }
 
