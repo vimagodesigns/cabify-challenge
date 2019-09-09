@@ -4,7 +4,7 @@ import './App.css';
 import { Checkout } from './services/Checkout.class';
 import { pricingRules } from './config/pricingRules.config';
 import { StateProvider } from './stateManagment/state';
-import Main from './containers/Main/main.container';
+import Main from './containers/molecules/Main/main.container';
 import { reducer } from './reducers/checkout.reducer';
 
 const checkout = new Checkout(pricingRules);

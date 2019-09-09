@@ -1,12 +1,15 @@
 import React from 'react';
-import Modal from '../Modal/modal.container';
-import { useStateValue } from '../../stateManagment/state';
-import ProductsHeaderComponent from '../../components/molecules/ProductsHeader/productsHeader.component';
-import ProductsList from '../ProductList/productList.container';
-import MainTitleComponent from '../../components/atoms/MainTitle/mainTitle.component';
-import SummaryItemsComponent from '../../components/molecules/SummaryItems/summaryItems.component';
-import SummaryDiscounts from '../SummaryDiscounts/summaryDiscounts.container';
-import SummaryTotalComponent from '../../components/molecules/SummaryTotal/summaryTotal.component';
+import Modal from '../../atoms/Modal/modal.container';
+
+import { useStateValue } from '../../../stateManagment/state';
+
+import SummaryDiscounts from '../../atoms/SummaryDiscounts/summaryDiscounts.container';
+import ProductsList from '../../molecules/ProductList/productList.container';
+
+import MainTitleComponent from '../../../components/atoms/MainTitle/mainTitle.component';
+import SummaryItemsComponent from '../../../components/molecules/SummaryItems/summaryItems.component';
+import ProductsHeaderComponent from '../../../components/molecules/ProductsHeader/productsHeader.component';
+import SummaryTotalComponent from '../../../components/molecules/SummaryTotal/summaryTotal.component';
 
 const Main = () => {
     const [{

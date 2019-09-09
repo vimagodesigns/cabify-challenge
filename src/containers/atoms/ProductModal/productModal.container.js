@@ -1,7 +1,10 @@
 import React from 'react';
-import ProductModalComponent from '../../components/molecules/ProductModal/productModal.component';
-import { useStateValue } from '../../stateManagment/state';
-import { RESET_SELECT_PRODUCT, UPDATE_PRODUCTS } from '../../reducers/checkout.reducer';
+
+import { useStateValue } from '../../../stateManagment/state';
+
+import ProductModalComponent from '../../../components/molecules/ProductModal/productModal.component';
+
+import { RESET_SELECT_PRODUCT, UPDATE_PRODUCTS } from '../../../reducers/checkout.reducer';
 
 const ProductModalContainer = ({ closeModal }) => {
     const [{ checkout, currency, productSelected }, dispatch] = useStateValue();

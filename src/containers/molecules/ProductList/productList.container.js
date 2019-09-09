@@ -1,10 +1,18 @@
 import React from 'react';
 
-import { useStateValue } from '../../stateManagment/state';
-import ProductsItemComponent from '../../components/organisms/ProductItem/productItem.component';
-import ProductModalContainer from '../ProductModal/productModal.container';
-import { SET_MODAL_COMPONENT, SELECT_PRODUCT, UPDATE_PRODUCTS } from '../../reducers/checkout.reducer';
-import { less } from '../../utils/common.utils';
+import { useStateValue } from '../../../stateManagment/state';
+
+import ProductModal from '../../atoms/ProductModal/productModal.container';
+
+import ProductsItemComponent from '../../../components/organisms/ProductItem/productItem.component';
+
+import { less } from '../../../utils/common.utils';
+
+import {
+    SET_MODAL_COMPONENT,
+    SELECT_PRODUCT,
+    UPDATE_PRODUCTS,
+} from '../../../reducers/checkout.reducer';
 
 const ProductsListContainer = ({ productList }) => {
     const [{ currency, checkout, scannedProducts }, dispatch] = useStateValue();
@@ -38,7 +46,7 @@ const ProductsListContainer = ({ productList }) => {
     const handleClickDetails = product => event => {
         event.preventDefault()
         dispatch({ type: SELECT_PRODUCT, payload: product });
-        dispatch({ type: SET_MODAL_COMPONENT, payload: ProductModalContainer });
+        dispatch({ type: SET_MODAL_COMPONENT, payload: ProductModal });
     }
 
     const getTotalProduct = (type) => scannedProducts[type].costWithoutDiscount;

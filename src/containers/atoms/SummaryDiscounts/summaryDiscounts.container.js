@@ -1,13 +1,14 @@
 import React from 'react';
 
-import SummaryListComponent from '../../components/atoms/SummaryList/summaryList.component';
-import { useStateValue } from '../../stateManagment/state';
-import SummaryDiscountItemComponent from '../../components/atoms/SummaryDiscountItems/summaryDiscountItems.component';
+import { useStateValue } from '../../../stateManagment/state';
+
+import SummaryListComponent from '../../../components/atoms/SummaryList/summaryList.component';
+import SummaryDiscountItemComponent from '../../../components/atoms/SummaryDiscountItems/summaryDiscountItems.component';
 
 const SummaryDiscountsContainer = () => {
     const [{ scannedProducts }] = useStateValue();
-    const scannedProductsKeys = Object.keys(scannedProducts);
     const [{ currency }] = useStateValue();
+    const scannedProductsKeys = Object.keys(scannedProducts);
 
     const getDiscountString = (discount) => {
         return discount === 0 ?

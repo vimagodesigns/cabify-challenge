@@ -1,8 +1,10 @@
 import React from 'react';
 
 import './modal.css';
-import { useStateValue } from '../../stateManagment/state';
-import { CLOSE_MODAL_COMPONENT } from '../../reducers/checkout.reducer';
+
+import { useStateValue } from '../../../stateManagment/state';
+
+import { CLOSE_MODAL_COMPONENT } from '../../../reducers/checkout.reducer';
 
 const Modal = () => {
     const [{ modalList }, dispatch] = useStateValue();
