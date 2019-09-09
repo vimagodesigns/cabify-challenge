@@ -5,16 +5,16 @@ import { useStateValue } from '../../stateManagment/state';
 import { CLOSE_MODAL_COMPONENT } from '../../reducers/checkout.reducer';
 
 const Modal = () => {
-    const [{ modalComponentList }, dispatch] = useStateValue();
-    const ModalComponent = modalComponentList[0];
+    const [{ modalList }, dispatch] = useStateValue();
+    const ModalContent = modalList[0];
     
     const closeModal = () => {
-        dispatch({ type: CLOSE_MODAL_COMPONENT, payload: modalComponentList[0] });
+        dispatch({ type: CLOSE_MODAL_COMPONENT, payload: modalList[0] });
     }
 
     return (
         <div className="modal">
-            <ModalComponent closeModal={closeModal} />
+            <ModalContent closeModal={closeModal} />
         </div>
     )
 };

@@ -9,6 +9,8 @@ export const productList = [
         code: 'X7R2OPX',
         price: 20,
         type: TSHIRT,
+        discountOrder: 2,
+        order: 1,
         // TODO ojo con esto discountRule: (price) => (quantity) => 
         //     getPriceAndDiscountByAmount(3, 1, quantity, price),
     },
@@ -20,6 +22,8 @@ export const productList = [
         code: 'X2G2OPZ',
         price: 5,
         type: MUG,
+        discountOrder: 1,
+        order: 2,
         // discountRule: (price) => (quantity) => 
         //     getDiscountByPercentage(3, 1, quantity, price),
     },
@@ -31,7 +35,11 @@ export const productList = [
         code: 'X3W2OPY',
         price: 10,
         type: CAP,
+        discountOrder: null,
+        order: 3,
     },
+
+    // NOTE If we want to add another product, everything works the same
     // {
     //     thumbnail: 'cap.png',
     //     img: '',
@@ -40,5 +48,7 @@ export const productList = [
     //     code: 'CUSTOM',
     //     price: 15,
     //     type: 'CUSTOM',
+    //     discountOrder: null,
+    //     order: 4,
     // },
 ];

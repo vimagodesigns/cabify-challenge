@@ -469,7 +469,6 @@ input {
 }
 
 .summary-total-cost {
-  flex-basis: 100%;
   text-transform: uppercase;
 }
 

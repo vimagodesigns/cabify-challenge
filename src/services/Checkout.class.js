@@ -1,4 +1,5 @@
 import { productList } from "../config/product.config";
+import { less } from "../utils/common.utils";
 
 export class Checkout {
     constructor(pricingRules = {}) {
@@ -12,7 +13,10 @@ export class Checkout {
     }
 
     initScannedProducts() {
-        this.productList.map(product => this.clearScannedProduct(product.type));
+        this.productList
+            .sort((firstProduct, seconProduct) =>
+                less(firstProduct.discountOrder, seconProduct.discountOrder))
+            .map(product => this.clearScannedProduct(product.type));
         return this;
     }
 

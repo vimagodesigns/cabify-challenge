@@ -18,7 +18,7 @@ function App() {
     totalItems: 0,
     currency: '€',
     scannedProducts: checkout.scannedProducts,
-    modalComponentList: [],
+    modalList: [],
     productSelected: {},
   };
 

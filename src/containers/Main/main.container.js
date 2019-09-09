@@ -1,20 +1,57 @@
 import React from 'react';
-import ProductsComponent from '../../components/Products/products.component';
-import OrderSummaryComponent from '../../components/OrderSummary/orderSummary.component';
-import ModalComponent from '../../components/Modal/modal.component';
+import Modal from '../Modal/modal.container';
 import { useStateValue } from '../../stateManagment/state';
+import ProductsHeaderComponent from '../../components/ProductsHeader/productsHeader.component';
+import ProductsList from '../ProductList/productList.container';
+import MainTitleComponent from '../../components/MainTitle/mainTitle.component';
+import SummaryItemsComponent from '../../components/SummaryItems/summaryItems.component';
+import SummaryDiscounts from '../SummaryDiscounts/summaryDiscounts.container';
+import SummaryTotalComponent from '../../components/SummaryTotal/summaryTotal.component';
 
 const Main = () => {
-  const [{ modalComponentList }] = useStateValue();
-  const isModalVisible = !!modalComponentList.length;
+    const [{
+        modalList,
+        productList,
+        costWithoutDiscount,
+        costWithDiscount,
+        totalItems,
+        currency
+    }] = useStateValue();
+    const isModalVisible = !!modalList.length;
 
-  return (
-    <main className="App">
-    <ProductsComponent />
-    <OrderSummaryComponent />
-    {isModalVisible && <ModalComponent />}
-    </main>
-  );
+    const productsMainTitle = 'Shopping cart';
+    const productsHeadTitles = {
+        detailsText: 'Product details',
+        quantityText: 'Quantity',
+        priceText: 'price',
+        totalText: 'total',
+    };
+
+    return (
+        <main className="App">
+            <section className="products">
+                <ProductsHeaderComponent
+                    mainTitle={productsMainTitle}
+                    tableHeadTitles={productsHeadTitles}
+                />
+                <ProductsList productList={productList} />
+            </section>
+            <aside className="summary">
+                <MainTitleComponent>Order Summary</MainTitleComponent>
+                <SummaryItemsComponent
+                    costWithoutDiscount={costWithoutDiscount}
+                    totalItems={totalItems}
+                    currency={currency}
+                    />
+                <SummaryDiscounts />
+                <SummaryTotalComponent
+                    costWithDiscount={costWithDiscount}
+                    currency={currency}
+                />
+            </aside>
+            {isModalVisible && <Modal />}
+        </main>
+    );
 }
 
 export default Main;

@@ -31,18 +31,18 @@ export const reducer = (state, action) => {
         case SET_MODAL_COMPONENT:
             return {
                 ...state,
-                modalComponentList: [
+                modalList: [
                     action.payload,
-                    ...state.modalComponentList,
+                    ...state.modalList,
                 ]
             };
         
         case CLOSE_MODAL_COMPONENT:
-            const newModalComponentList = state.modalComponentList
+            const newmodalList = state.modalList
                 .filter((component) => component !== action.payload);
             return {
                 ...state,
-                modalComponentList: newModalComponentList,
+                modalList: newmodalList,
             };
         
         default:

@@ -2,36 +2,18 @@ import React from 'react';
 
 import SummaryListComponent from '../../components/SummaryList/summaryList.component';
 import { useStateValue } from '../../stateManagment/state';
-
-// TODO - this is a component
-const SummaryDiscountItems = ({
-    discountLabel,
-    discount
-}) => {
-    const [{ currency }] = useStateValue();
-
-    const getDiscountString = () => {
-        return discount === 0 ?
-            `0${currency}` :
-            `-${discount}${currency}`;
-    }
-
-    return (
-        <li key={discountLabel}>
-            <span>{discountLabel}</span><span>{getDiscountString()}</span>
-        </li>
-    );
-}
+import SummaryDiscountItemComponent from '../../components/SummaryDiscountItems/summaryDiscountItems.component';
 
 const SummaryDiscountsContainer = () => {
     const [{ scannedProducts }] = useStateValue();
     const scannedProductsKeys = Object.keys(scannedProducts);
+    const [{ currency }] = useStateValue();
 
-    const mapSummaryDiscounts = () => (
-        scannedProductsKeys
-            .filter((key) => scannedProducts[key].discountLabel !== '')
-            .map((key) => SummaryDiscountItems(scannedProducts[key]))
-    );
+    const getDiscountString = (discount) => {
+        return discount === 0 ?
+            `0${currency}` :
+            `-${discount}${currency}`;
+    }
 
     return (
         <SummaryListComponent
@@ -39,7 +21,18 @@ const SummaryDiscountsContainer = () => {
             wrapperClassName="wrapper-half border"
             title="Discounts"
         >
-            {mapSummaryDiscounts()}
+            {
+                scannedProductsKeys
+                    .filter((key) => scannedProducts[key].discountLabel !== '')
+                    .map((key) => (
+                        <SummaryDiscountItemComponent
+                            key={key}
+                            currency={currency}
+                            getDiscountString={getDiscountString}
+                            {...scannedProducts[key]}
+                        />
+                    ))
+            }
         </SummaryListComponent>
     )
 };
