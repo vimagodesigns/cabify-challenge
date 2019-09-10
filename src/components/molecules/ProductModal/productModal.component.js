@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './productModal.css';
 import CloseSvgComponent from '../../atoms/svg/close/closeSvg.component';
@@ -21,7 +22,7 @@ const ProductModalComponent = ({
         <aside className="description-section">
             <header>
                 <div className="close-button" onClick={closeModal}>
-                    <CloseSvgComponent size="24" fill="#aaa" />
+                    <CloseSvgComponent size={24} fill="#aaa" />
                 </div>
             </header>
             <main>
@@ -48,3 +49,18 @@ const ProductModalComponent = ({
 );
 
 export default ProductModalComponent;
+
+ProductModalComponent.propTypes = {
+    img: PropTypes.string,
+    description: PropTypes.string.isRequired,
+    fullDescription: PropTypes.string.isRequired,
+    code: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    currency: PropTypes.string.isRequired,
+    closeModal: PropTypes.func.isRequired,
+    handleCheckout: PropTypes.func.isRequired,
+};
+
+ProductModalComponent.defaultProps = {
+    img: undefined,
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './productDetails.css';
 
@@ -16,3 +17,10 @@ const ProductDetails = ({ thumbnail, description, code, onClickDetails }) => (
 );
 
 export default ProductDetails;
+
+ProductDetails.propTypes = {
+    thumbnail: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    code: PropTypes.string.isRequired,
+    onClickDetails: PropTypes.func.isRequired,
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const QuantityInput = ({
     quantity,
@@ -19,3 +20,10 @@ const QuantityInput = ({
 );
 
 export default QuantityInput;
+
+QuantityInput.propTypes = {
+    quantity: PropTypes.number.isRequired,
+    onChageQuantity: PropTypes.func.isRequired,
+    increaseQuantity: PropTypes.func.isRequired,
+    decreaseQuantity: PropTypes.func.isRequired,
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const SummaryListComponent = ({
     children,
@@ -15,3 +16,16 @@ const SummaryListComponent = ({
 );
 
 export default SummaryListComponent;
+
+SummaryListComponent.propTypes = {
+    children: PropTypes.node.isRequired,
+    wrapperClassName: PropTypes.string,
+    listClassName: PropTypes.string,
+    title: PropTypes.string,
+};
+
+SummaryListComponent.defaultProps = {
+    wrapperClassName: undefined,
+    listClassName: undefined,
+    title: undefined,
+};

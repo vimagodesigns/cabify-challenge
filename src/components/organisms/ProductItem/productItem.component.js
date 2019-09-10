@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import ProductDetais from '../../atoms/ProductDetails/productDetails.component';
 import QuantityInputComponent from '../../atoms/QuantityInput/quantityInput.component';
@@ -44,3 +45,17 @@ const ProductsItemComponent = ({
 );
 
 export default ProductsItemComponent;
+
+ProductsItemComponent.propTypes = {
+    price: PropTypes.number.isRequired,
+    currency: PropTypes.string.isRequired,
+    totalProduct: PropTypes.number.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    code: PropTypes.string.isRequired,
+    onClickDetails: PropTypes.func.isRequired,
+    quantity: PropTypes.number.isRequired,
+    onChageQuantity: PropTypes.func.isRequired,
+    increaseQuantity: PropTypes.func.isRequired,
+    decreaseQuantity: PropTypes.func.isRequired,
+};

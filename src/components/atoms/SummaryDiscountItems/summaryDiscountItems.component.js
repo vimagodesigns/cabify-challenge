@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const SummaryDiscountItemComponent = ({
     discountLabel,
@@ -10,4 +11,10 @@ const SummaryDiscountItemComponent = ({
     </li>
 );
 
-    export default SummaryDiscountItemComponent;
+export default SummaryDiscountItemComponent;
+
+SummaryDiscountItemComponent.propTypes = {
+    discountLabel: PropTypes.string.isRequired,
+    discount: PropTypes.number.isRequired,
+    getDiscountString: PropTypes.func.isRequired,
+};

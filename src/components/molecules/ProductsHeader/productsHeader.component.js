@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 import MainTitleComponent from '../../atoms/MainTitle/mainTitle.component';
 
@@ -20,3 +21,14 @@ const ProductsHeaderComponent = ({
 );
 
 export default ProductsHeaderComponent;
+
+const tableHeadProptypes = PropTypes.shape({
+    detailsText: PropTypes.string.isRequired,
+    quantityText: PropTypes.string.isRequired,
+    priceText: PropTypes.string.isRequired,
+});
+
+ProductsHeaderComponent.prototype = {
+    mainTitle: PropTypes.string.isRequired,
+    tableHeadTitles: tableHeadProptypes.isRequired,
+}

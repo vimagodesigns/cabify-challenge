@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import SummaryListComponent from '../../atoms/SummaryList/summaryList.component';
 
@@ -17,3 +18,9 @@ const SummaryItemsComponent = ({ costWithoutDiscount, totalItems, currency }) =>
 );
 
 export default SummaryItemsComponent;
+
+SummaryItemsComponent.propTypes = {
+    costWithoutDiscount: PropTypes.number.isRequired,
+    totalItems: PropTypes.number.isRequired,
+    currency: PropTypes.string.isRequired,
+};
