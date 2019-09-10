@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { useStateValue } from '../../../stateManagment/state';
 
@@ -38,3 +39,7 @@ const ProductModalContainer = ({ closeModal }) => {
 };
 
 export default ProductModalContainer;
+
+ProductModalContainer.propTypes = {
+    closeModal: PropTypes.func.isRequired,
+};

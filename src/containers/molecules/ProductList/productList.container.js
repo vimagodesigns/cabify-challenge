@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { useStateValue } from '../../../stateManagment/state';
 
@@ -80,3 +81,7 @@ const ProductsListContainer = ({ productList }) => {
 };
 
 export default ProductsListContainer;
+
+ProductsListContainer.prototype = {
+    productList: PropTypes.array,
+}
