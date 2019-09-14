@@ -11,8 +11,6 @@ export const productList = [
         type: TSHIRT,
         discountOrder: 2,
         order: 1,
-        // TODO ojo con esto discountRule: (price) => (quantity) => 
-        //     getPriceAndDiscountByAmount(3, 1, quantity, price),
     },
     {
         thumbnail: 'mug.png',
@@ -24,8 +22,6 @@ export const productList = [
         type: MUG,
         discountOrder: 1,
         order: 2,
-        // discountRule: (price) => (quantity) => 
-        //     getDiscountByPercentage(3, 1, quantity, price),
     },
     {
         thumbnail: 'cap.png',
