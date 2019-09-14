@@ -83,5 +83,5 @@ const ProductsListContainer = ({ productList }) => {
 export default ProductsListContainer;
 
 ProductsListContainer.prototype = {
-    productList: PropTypes.array,
+    productList: PropTypes.array.isRequired,
 }
