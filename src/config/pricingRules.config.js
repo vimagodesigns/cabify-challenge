@@ -1,26 +1,20 @@
 import { TSHIRT, MUG } from "../constants/products.constants";
+import { discountByQuantity, discountTwoForOne } from "../utils/pricingRules.utils";
 
 export const pricingRules = {
     [TSHIRT]: {
-        rule: (product) => {
-            const { quantity } = product;
-            const shirtDiscount = 1;
-            const discount = quantity < 3 ? 0 : shirtDiscount;
-
-            return quantity === 3 ?
-                discount * 3 :
-                discount;
-        },
+        rule: ({ quantity }) => discountByQuantity({
+            productquantity: quantity, 
+            minQuantity: 3, 
+            productDiscount: 1,
+        }),
         label: 'x3 Shirt offer',
     },
     [MUG]: {
-        rule: (product) => {
-            const { quantity, price } = product;
-            const isDiscountable = quantity % 2 === 0 && quantity > 1;
-            const discount = isDiscountable ?  price : 0;
-
-            return discount; 
-        },
+        rule: ({ quantity, price}) => discountTwoForOne({
+            productquantity: quantity,
+            productPrice: price,
+        }) ,
         label: '2x1 Mug offer'
     },
 };

@@ -1,38 +1,21 @@
-const getPriceWithAmountLessDiscount = (price, discountAmount) => price - discountAmount;
-const getPercentLessDiscount = (price, discountPercent) => {
-    const discountAmount = (price * discountPercent) / 100;
-    return price - discountAmount;
+export const discountByQuantity = ({
+    productquantity,
+    minQuantity,
+    productDiscount,
+}) => {
+    const discount = productquantity < minQuantity ? 0 : productDiscount;
+
+    return productquantity === minQuantity ?
+        discount * minQuantity :
+        discount;
 };
 
-export const getPriceAndDiscountByAmount = (
-    minProductAmount,
-    discountAmount,
-    quantity,
-    price
-) => {
-    if (quantity < minProductAmount)
-        return { finalPrice: price, discount: 0 };
+export const discountTwoForOne = ({
+    productquantity,
+    productPrice,
+}) => {
+    const isDiscountable = productquantity % 2 === 0 && productquantity > 1;
+    const discount = isDiscountable ?  productPrice : 0;
 
-    const priceWithDiscount = getPriceWithAmountLessDiscount(price, discountAmount);
-    const finalPrice = priceWithDiscount * quantity;
-    const discount = discountAmount * quantity;
-
-    return { finalPrice, discount };
-}
-
-export const getPriceAndDiscountByPercentage = (
-    eachProductAmount,
-    discountPercentage,
-    quantity,
-    price
-) => {
-    console.log('llega aqui', {
-        eachProductAmount,
-        discountPercentage,
-        quantity,
-        price
-    });
-    console.log(eachProductAmount);
-    console.log(quantity);
-    return getPercentLessDiscount(price, discountPercentage);
-}
+    return discount; 
+};
