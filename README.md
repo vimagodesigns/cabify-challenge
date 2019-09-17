@@ -18,6 +18,7 @@ There is a class (required on the challenge) which has all the logic to scan and
 
 ```
 - bonus // Challenge bonus
+- build // minified production code 
 - public // Some assests and challenge exercise
 - src // Source of the project
   - components // All the documentation is in each component
