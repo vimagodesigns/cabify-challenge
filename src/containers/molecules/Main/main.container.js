@@ -45,7 +45,7 @@ const Main = () => {
                     costWithoutDiscount={costWithoutDiscount}
                     totalItems={totalItems}
                     currency={currency}
-                    />
+                />
                 <SummaryDiscounts />
                 <SummaryTotalComponent
                     costWithDiscount={costWithDiscount}

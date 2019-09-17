@@ -1,10 +1,10 @@
-# SummaryList
+# CloseSvg
 Renders a close svg
 
 ## Usage
 
 ```
-import CloseSvgComponent from 'src/components/atoms/svg/close/closeSvg.component';
+import CloseSvg from 'src/components/atoms/svg/close/closeSvg.component';
 ```
 
 ## Props
@@ -19,11 +19,11 @@ import CloseSvgComponent from 'src/components/atoms/svg/close/closeSvg.component
 | height | height of the SVG | Number | 18 |
 
 ```
-<CloseSvgComponent size={24} fill={'#aaa'} className={'foo-class'} />
+<CloseSvg size={24} fill={'#aaa'} className={'foo-class'} />
 
 or
 
-<CloseSvgComponent height={10} width={20} fill={'#aaa'} className={'foo-class'} />
+<CloseSvg height={10} width={20} fill={'#aaa'} className={'foo-class'} />
 ```
 
 Note: Normally if you have a size you are defining the same height and width so it makes no 

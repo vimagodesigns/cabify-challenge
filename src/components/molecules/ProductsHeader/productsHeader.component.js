@@ -26,6 +26,7 @@ const tableHeadProptypes = PropTypes.shape({
     detailsText: PropTypes.string.isRequired,
     quantityText: PropTypes.string.isRequired,
     priceText: PropTypes.string.isRequired,
+    totalText: PropTypes.string.isRequired,
 });
 
 ProductsHeaderComponent.prototype = {
