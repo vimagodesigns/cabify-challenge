@@ -20,3 +20,5 @@ import SummaryTotal from 'src/components/molecules/SummaryTotal/summaryTotal.com
     currency={'€'}
 />
 ```
+
+Note: Probably we don't need a list in here because there is no list actually, but we are taking advantage of the sharing component so we can use that CSS to for consistency. 

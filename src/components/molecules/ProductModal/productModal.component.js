@@ -16,7 +16,6 @@ const ProductModalComponent = ({
 }) => (
     <div className="product-modal">
         <section className="image-section">
-            {/* NOTE </section>https://ivomynttinen.com/blog/a-guide-for-creating-a-better-retina-web aqui explican lo de la imagen retina con html y por que no es recomendable hacerlo asi (bueno comentarlo) */}
             <img src={`img/bonus/${img}`} alt={description} />
         </section>
         <aside className="description-section">

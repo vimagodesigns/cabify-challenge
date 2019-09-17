@@ -32,10 +32,10 @@ There is a class (required on the challenge) which has all the logic to scan and
       - svg
         - close
     - molecules
-      - ProductModal
+      - ProductModal* // It has a note in the documentation
       - ProductsHeader
-      - SummaryItems
-      - SummaryTotal
+      - SummaryItems* // It has a note in the documentation
+      - SummaryTotal* // It has a note in the documentation
     - organisms
       - ProductItem
   - config // Some config files

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import SummaryListComponent from '../../atoms/SummaryList/summaryList.component';
 
 const SummaryItemsComponent = ({ costWithoutDiscount, totalItems, currency }) => (
-    <SummaryListComponent // NOTE if it is not a list, I wouldn't use a list here but a div. That needs some css changes. However, it is a shared component
+    <SummaryListComponent
         listClassName="summary-items"
         wrapperClassName="wrapper border"
     >

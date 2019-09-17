@@ -5,7 +5,7 @@ import SummaryListComponent from '../../atoms/SummaryList/summaryList.component'
 
 const SummaryTotalComponent = ({ costWithDiscount, currency }) => (
     <Fragment>
-        <SummaryListComponent // NOTE As I mentioned in summaryItems.component, no need for list here. I only use them taking advantage of provided css
+        <SummaryListComponent
             wrapperClassName="summary-total border"
         >
             <li>
