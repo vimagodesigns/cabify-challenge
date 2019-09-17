@@ -12,7 +12,7 @@ export default ProductAmount;
 
 ProductAmount.propTypes = {
     customClassName: PropTypes.string,
-    amount: PropTypes.number,
+    amount: PropTypes.number.isRequired,
     currency: PropTypes.string.isRequired,
 };
 

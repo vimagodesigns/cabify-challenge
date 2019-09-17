@@ -3,7 +3,7 @@ import React from 'react';
 import { useStateValue } from '../../../stateManagment/state';
 
 import SummaryListComponent from '../../../components/atoms/SummaryList/summaryList.component';
-import SummaryDiscountItemComponent from '../../../components/atoms/SummaryDiscountItems/summaryDiscountItems.component';
+import SummaryDiscountItemComponent from '../../../components/atoms/SummaryDiscountItem/summaryDiscountItem.component';
 
 const SummaryDiscountsContainer = () => {
     const [{ scannedProducts }] = useStateValue();
@@ -28,7 +28,6 @@ const SummaryDiscountsContainer = () => {
                     .map((key) => (
                         <SummaryDiscountItemComponent
                             key={key}
-                            currency={currency}
                             getDiscountString={getDiscountString}
                             {...scannedProducts[key]}
                         />
