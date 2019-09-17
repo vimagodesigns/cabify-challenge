@@ -5,7 +5,7 @@ import { useStateValue } from '../../../stateManagment/state';
 
 import ProductModal from '../../atoms/ProductModal/productModal.container';
 
-import ProductsItemComponent from '../../../components/organisms/ProductItem/productItem.component';
+import ProductsItemComponent from '../../../components/molecules/ProductItem/productItem.component';
 
 import { less } from '../../../utils/common.utils';
 

@@ -5,7 +5,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 import ProductsList from '../ProductList/productList.container';
 import { StateProvider } from '../../../stateManagment/state';
-import ProductsItemComponent from '../../../components/organisms/ProductItem/productItem.component';
+import ProductsItemComponent from '../../../components/molecules/ProductItem/productItem.component';
 import { Checkout } from '../../../services/Checkout.class';
 import { pricingRules } from '../../../config/pricingRules.config';
 import { reducer } from '../../../reducers/checkout.reducer';

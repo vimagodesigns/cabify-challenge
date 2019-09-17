@@ -4,7 +4,7 @@ Renders a product item with all you need to purchase it. Details, quantity input
 ## Usage
 
 ```
-import ProductsItem from 'src/components/organisms/ProductItem/productItem.component';
+import ProductsItem from 'src/components/molecules/ProductItem/productItem.component';
 ```
 
 ## Props

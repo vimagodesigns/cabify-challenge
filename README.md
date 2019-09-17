@@ -1,6 +1,98 @@
-THIS IS FOR THE STATE MANAGMENT https://medium.com/simply/state-management-with-react-hooks-and-context-api-at-10-lines-of-code-baf6be8302c
+# Cart Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a project where you can set a bunch of products and discounts, display the products, select the amount of them and see the total price and discounts automatically updated. You can click on the products so a modal opens to show more details and you can even purchase from there.
+
+## State Managment
+
+To manage the state of the application, I have used the way suggested on this article https://medium.com/simply/state-management-with-react-hooks-and-context-api-at-10-lines-of-code-baf6be8302c
+
+Using contexts and reducers from React it has been created a State Provider which is going to wrap the application providing with the state of the application to all the containers which need it.
+
+You can see this stateManagment at `src/stateManagment/state.js`
+
+## Checkout Class
+
+There is a class (required on the challenge) which has all the logic to scan and unscan products, calculating prices, amount of products and discounts, and managing the scanned products list.
+
+## Structure project and little documentation about them
+
+```
+- bonus // Challenge bonus
+- public // Some assests and challenge exercise
+- src // Source of the project
+  - components // All the documentation is in each component
+    - atoms
+      - MaintTitle
+      - ProductAmount
+      - ProductDetails
+      - QuantityInput
+      - SummaryDiscountItem
+      - SummaryLIst
+      - __tests__ // We store some tests in here
+      - svg
+        - close
+    - molecules
+      - ProductModal
+      - ProductsHeader
+      - SummaryItems
+      - SummaryTotal
+    - organisms
+      - ProductItem
+  - config // Some config files
+    - pricingRules.config.js // We have the pricing rule for each product which need it.
+    - product.config.js // Product list with all the info you need from them
+  - constants
+    - products.constants.js // Some constants that is needed and they are from products
+  - containers // All the documentation is in each container
+    - atoms
+      - Modal
+      - ProductModal
+      - SummaryDiscounts
+    - molecules
+      - Main
+      - ProductList
+      - __tests__ // We store some tests in here
+  - reducers
+    - checkout.reducer.js // Reducer for checkout (and the application)
+  - services
+    - checkout.class.js // We spoke about this above (basically the logic of checkout)
+  - stateManagment // We spoke about this above (basically the state managment)
+    - state.js // State provider
+  - utils // Some utils to share them along all the components and containers
+    - commont.utils.js // common utils
+    - pricingRules.utils.js // pricing rules utils (generic function rules)
+  - App.css // create-react file (styles)
+  - App.js // create-react file (app logic)
+  - App.test.js // create-react file (test)
+  - index.css // create-react file (index styles)
+  - index.js // create-react file (index logic)
+  - logo.svg // create-react file (logo)
+  - serviceWorker.js // create-react file (service workers)
+- .gitIgnore // create-react file  (to ignore some folders and files for git)
+- README.md // this file
+- package-lock.json
+- package.json
+```
+
+## Atomic design
+I have selected a model of design for components and containers that is the atomic design, but for undderstand what is the logic in this model specifically:
+
+- Components
+  - Atoms are the components that are not using any other component
+  - Molecules are the components that have some atoms components inside
+  - Organisms are the components that have some molecules and/or atoms components inside
+
+- Containers
+  - Atoms are the containers with no other container inside
+  - Molecules are the containers that have some atoms containers inside
+  - Organisms are the containers that have some molecules and/or atoms containers inside
+
+## Unit Tests
+
+Every component, container and even service, util, etc should have thier own unit test, but so far for this project there is only two folders with tests
+
+`/src/components/atoms/__tests__/`
+`/src/containers/molecules/__tests__/`
 
 ## Available Scripts
 
